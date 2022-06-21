@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import financeImage from '../../assets/finance.jpg';
 import classes from './Header.module.css';
-import HeaderButton from './HeaderButton';
+import Button from '../Button/Button'
 
 const Header = (props) => {
     return (
@@ -11,7 +11,7 @@ const Header = (props) => {
                 <h1>Expense App</h1>
                 <NavLink to="/" className={classes.link}>Home</NavLink>
                 <NavLink to="/expenses" className={classes.link}>Expenses</NavLink>
-                <HeaderButton onClick={props.onShowModal} />
+                <Button onClick={props.onShowModal}>Add Expense</Button>
             </header>
 
             <div className={classes['main-image']}>

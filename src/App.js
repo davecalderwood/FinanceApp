@@ -4,6 +4,8 @@ import Header from './UI/Header/Header';
 import AddExpense from './expenses/components/AddExpense';
 import Router from './shared/Router/Router';
 
+import './CSSVars.scss';
+
 function App() {
   const [showModal, setShowModal] = useState(false);
 
