@@ -29,13 +29,13 @@
     border-color: #510077;
 }
 
-.formControl--invalid label,
-.formControl--invalid p {
+.formControlInvalid label,
+.formControlInvalid p {
     color: red;
 }
 
-.formControl--invalid input,
-.formControl--invalid textarea {
+.formControlInvalid input,
+.formControlInvalid textarea {
     border-color: red;
     background: #ffd1d1;
 }
