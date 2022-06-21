@@ -1,10 +1,11 @@
 import React from 'react';
 import Modal from '../../UI/Modal/Modal';
 
-const AddExpense = () => {
+const AddExpense = (props) => {
     return (
-        <Modal>
+        <Modal onClose={props.onClose}>
             <h1>Add Expense Modal</h1>
+            <button onClick={props.onClose}>Close</button>
         </Modal>
     );
 }
