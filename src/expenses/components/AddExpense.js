@@ -1,8 +1,13 @@
-import React, { useCallback, useReducer } from 'react';
+import React, { useCallback, useReducer, useState } from 'react';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Select from 'react-select';
+
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import Modal from '../../UI/Modal/Modal';
-import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
+import { VALIDATOR_MIN, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
+
 import classes from '../styles/AddExpense.module.scss';
 
 const formReducer = (state, action) => {
@@ -29,7 +34,22 @@ const formReducer = (state, action) => {
     }
 };
 
+const colorStyles = {
+    control: styles => ({ ...styles, backgroundColor: '#f8f8f8' })
+}
+
+const options = [
+    { value: 'Gas', label: 'Gas' },
+    { value: 'Groceries', label: 'Groceries' },
+    { value: 'Travel', label: 'Travel' },
+    { value: 'Savings', label: 'Savings' },
+    { value: 'Misc', label: 'Misc' }
+];
+
 const AddExpense = (props) => {
+    const [startDate, setStartDate] = useState(new Date());
+    const [selectedOption, setSelectedOption] = useState(null);
+
     const [formState, dispatch] = useReducer(formReducer, {
         inputs: {
             title: {
@@ -44,13 +64,19 @@ const AddExpense = (props) => {
         isValid: false
     });
 
+    // const calendarIsValid = 
+
     const inputHandler = useCallback((id, value, isValid) => {
         dispatch({type: 'INPUT_CHANGE', value: value, isValid: isValid, inputId: id})
     }, []);
 
+    const dropdownSelectHandler = selectedOption => {
+        setSelectedOption(selectedOption);
+    };
+
     return (
         <Modal onClose={props.onClose}>
-            <h1>Add Expense Modal</h1>
+            <h2 className={classes.title}>Add Expense</h2>
 
             <form className={classes.expenseForm}>
                 <Input 
@@ -67,11 +93,34 @@ const AddExpense = (props) => {
                     id="amount"
                     element="input" 
                     type="number" 
-                    label="Number" 
-                    placeholder="Number"
-                    validators={[VALIDATOR_REQUIRE()]}
+                    label="Cost" 
+                    placeholder="Cost USD"
+                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(0)]}
                     onInput={inputHandler}
                     errorText="Please Enter a Valid Number" />
+
+                <label><strong>Date</strong></label>
+                <DatePicker 
+                    id="calendar"
+                    type="picker"
+                    className={classes.datePicker}
+                    selected={startDate}
+                    maxDate={new Date()}
+                    onChange={(date) => setStartDate(date)} /><br/>
+
+                <div className={classes.dropdown}>
+                    <label><strong>Category</strong></label>
+                    <Select 
+                        id="categoryDropdown"
+                        options={options} 
+                        onChange={dropdownSelectHandler} 
+                        defaultValue={selectedOption}
+                        selected={selectedOption}
+                        isSearchable={false}
+                        className={classes.dropdownClass}
+                        styles={colorStyles}
+                        placeholder="Select an option" />
+                </div>
 
                 <div className={classes.buttonBar}>
                     <Button type="button" onClick={props.onClose}>Close</Button>

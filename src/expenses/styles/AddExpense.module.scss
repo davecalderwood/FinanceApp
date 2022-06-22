@@ -1,4 +1,26 @@
+.title {
+    text-align: center;
+}
+.expenseForm {
+    width: 80%;
+    margin: auto;
+}
 .buttonBar {
     display: flex;
     justify-content: center;
+    margin-top: 15px;
+}
+.datePicker {
+    width: 100%;
+    height: 30px;
+    font: inherit;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    padding: 0.15rem 0.25rem;
+}
+.dropdown {
+    margin-top: 15px;
+}
+.dropdownClass {
+    width: 102%;
 }
