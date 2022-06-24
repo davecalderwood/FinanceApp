@@ -1,36 +1,13 @@
-import React, { useCallback, useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import Modal from '../../UI/Modal/Modal';
-import { VALIDATOR_MIN, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
+import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
+import useForm from '../../shared/Hooks/useForm';
 
 import classes from '../styles/AddExpense.module.scss';
-
-const formReducer = (state, action) => {
-    switch (action.type) {
-        case 'INPUT_CHANGE':
-            let formIsValid = true;
-            for (const inputId in state.inputs) {
-                if (inputId === action.inputId) {
-                    formIsValid = formIsValid && action.isValid;
-                } else {
-                    formIsValid = formIsValid && state.inputs[inputId].isValid;
-                }
-            }
-            return {
-                ...state,
-                inputs: {
-                    ...state.inputs,
-                    [action.inputId]: { value: action.value, isValid: action.isValid }
-                },
-                isValid: formIsValid
-            }
-        default: 
-            return state;
-    }
-};
 
 const colorStyles = {
     control: styles => ({ ...styles, backgroundColor: '#f8f8f8' })
@@ -45,25 +22,18 @@ const options = [
 ];
 
 const AddExpense = (props) => {
-    const [selectedOption, setSelectedOption] = useState(null);
-
-    const [formState, dispatch] = useReducer(formReducer, {
-        inputs: {
-            amount: {
-                value: '',
-                isValid: false
-            },
-            date: { 
-                value: "",  
-                isValid: false 
-            },
+    const [formState, inputHandler] = useForm({
+        amount: {
+            value: '',
+            isValid: false
         },
-        isValid: false
-    });
+        date: { 
+            value: "",  
+            isValid: false 
+        },
+    }, false);
 
-    const inputHandler = useCallback((id, value, isValid) => {
-        dispatch({type: 'INPUT_CHANGE', value: value, isValid: isValid, inputId: id})
-    }, []);
+    const [selectedOption, setSelectedOption] = useState(null);
 
     const dropdownSelectHandler = selectedOption => {
         setSelectedOption(selectedOption);
