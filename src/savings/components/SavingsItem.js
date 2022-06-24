@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
-import classes from '../styles/ExpenseItem.module.scss';
-import DeleteExpense from './DeleteExpense';
-import EditExpense from './EditExpense';
+import DeleteExpense from '../../expenses/components/DeleteExpense';
+import EditExpense from '../../expenses/components/EditExpense';
 
-const ExpenseItem = (props) => {
+import classes from '../../expenses/styles/ExpenseItem.module.scss';
+
+const SavingsItem = (props) => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -69,4 +70,4 @@ const ExpenseItem = (props) => {
     );
 }
  
-export default ExpenseItem;
+export default SavingsItem;
