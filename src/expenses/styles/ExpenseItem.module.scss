@@ -34,8 +34,10 @@
     transition: transform 1s ease;
 }
 
-// .expenseItemAmount {
-// }
+.expenseItemAmount {
+    width: 50px;
+    text-align: left;
+}
 .expenseItemCategory {
     width: 150px;
     text-align: left;

@@ -42,6 +42,13 @@ const ExpenseItem = (props) => {
 
     const expandIcon = showItemDetails ? <FaChevronCircleUp onClick={expandItemHandler} /> : <FaChevronCircleDown onClick={expandItemHandler} />;
 
+    var categoryText = props.category;
+    if (categoryText === "OnlineShopping") {
+        categoryText = "Online Shopping";
+    } else if (categoryText === "FastFood") {
+        categoryText = "Fast Food";
+    }
+
     return (
         <li className={showItemDetails ? classes.expandedItem : classes.expenseItem}>
 
@@ -50,7 +57,7 @@ const ExpenseItem = (props) => {
                     ${props.amount}
                 </div>
                 <div className={classes.expenseItemCategory}>
-                    {props.category}
+                    {categoryText}
                 </div>
                 <div className={classes.expenseItemDate}>
                     {props.date}

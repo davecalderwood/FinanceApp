@@ -6,7 +6,7 @@ import ExpenseItem from './ExpenseItem';
 
 // output a list of expenses
 const ExpenseList = (props) => {
-    const [selectedOption, setSelectedOption] = useState();
+    const [selectedOption, setSelectedOption] = useState('ALL');
 
     const dropdownSelectHandler = (selectedOption) => {
         setSelectedOption(selectedOption);
@@ -34,7 +34,7 @@ const ExpenseList = (props) => {
     });
     
     const shownExpenses = sortedExpenses.map(expense => {
-        if (selectedOption.value === 'ALL') {
+        if (selectedOption.value === 'ALL' || selectedOption === undefined || selectedOption === null) {
             return <ExpenseItem 
                         key={expense.id}
                         id={expense.id}
@@ -61,7 +61,7 @@ const ExpenseList = (props) => {
                 id="categoryDropdown"
                 options={dropdownOptions} 
                 onChange={dropdownSelectHandler} 
-                // defaultValue={selectedOption}
+                defaultValue={selectedOption}
                 selected={selectedOption}
                 isSearchable={false}
                 className={classes.dropdownClass}
