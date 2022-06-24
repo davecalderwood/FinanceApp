@@ -9,6 +9,7 @@ import './Global.scss';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const [color, setColor] = useState("#ebe3ff");
 
   const showModalHanlder = () => {
       setShowModal(true);
@@ -17,12 +18,12 @@ function App() {
       setShowModal(false);
   }
   return (
-    <>
+    <div style={{ background: color, minHeight: '100vh', paddingBottom: '25px'}}>
       {showModal && <AddExpense onClose={hideModalHanlder} />}
 
-      <Header onShowModal={showModalHanlder} />
+      <Header onShowModal={showModalHanlder} setColor={setColor} />
       <Router />
-    </>
+    </div>
   );
 }
 
