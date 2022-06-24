@@ -5,7 +5,7 @@ import classes from '../styles/SavingsGoal.module.scss';
 
 const SavingsGoal = () => {
     var totalGoal = 1000;
-    var completed = 399;
+    var completed = 950;
     const percentComplete = Math.floor((completed / totalGoal) * 100)
 
     const getGreenToRed = (percentComplete) => {
@@ -21,7 +21,7 @@ const SavingsGoal = () => {
                 <hr />
                 
                 <div className={classes.progressBar}>
-                    <ProgressBar completed={percentComplete} bgColor={`${getGreenToRed}`} />
+                    <ProgressBar completed={percentComplete} bgColor={`${getGreenToRed(percentComplete)}`} />
                 </div>
 
                 <div className={classes.savingsGoal}>
