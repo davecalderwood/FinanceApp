@@ -43,3 +43,14 @@
 // .expenseItemDate {
 
 // }
+
+.editDelete {
+    display: flex;
+    justify-content: flex-end;
+}
+.edit {
+
+    &:hover {
+        color: red;
+    }
+}

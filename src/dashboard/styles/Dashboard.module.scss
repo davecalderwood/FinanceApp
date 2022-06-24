@@ -1,0 +1,23 @@
+.dashboard {
+    display: flex;
+    overflow-x: hidden;
+
+    .dashboardItem {
+        margin: 15px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .dashboard {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: auto;
+
+        .dashboardItem {
+            margin: 15px;
+            width: auto;
+        }
+    }
+}

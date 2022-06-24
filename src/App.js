@@ -5,6 +5,7 @@ import AddExpense from './expenses/components/AddExpense';
 import Router from './shared/Router/Router';
 
 import './CSSVars.scss';
+import './Global.scss';
 
 function App() {
   const [showModal, setShowModal] = useState(false);

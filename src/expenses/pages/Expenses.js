@@ -2,7 +2,7 @@ import React from 'react';
 import ExpenseList from '../components/ExpenseList';
 
 const Expenses = (props) => {
-    const USERS = [
+    const EXPENSES = [
         {id: '1', amount: '100', category: 'Travel', date: '01/30/2022', comments: 'Comment 1'},
         {id: '2', amount: '30', category: 'Groceries', date: '02/15/2022', comments: 'Comment 2'},
         {id: '3', amount: '45', category: 'Misc', date: '02/17/2022', comments: 'Comment 3'},
@@ -12,7 +12,7 @@ const Expenses = (props) => {
 
     return (
         <>
-            <ExpenseList items={USERS} />
+            <ExpenseList items={EXPENSES} />
         </>
     );
 }

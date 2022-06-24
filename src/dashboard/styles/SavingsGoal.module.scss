@@ -1,0 +1,14 @@
+.savingsGoal {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    .goalItem {
+        border: 1px solid black;
+        width: 125px;
+    }
+}
+
+.progressBar {
+    margin: 15px;
+}
