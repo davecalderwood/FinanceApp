@@ -1,6 +1,8 @@
 import React from 'react';
 import ExpenseList from '../components/ExpenseList';
 
+import MOCK_DATA from '../../MOCK_DATA.json'
+
 const Expenses = (props) => {
     const EXPENSES = [
         {id: '1', amount: '100', category: 'Travel', date: '01/30/2022', comments: 'Comment 1'},
@@ -12,7 +14,7 @@ const Expenses = (props) => {
 
     return (
         <>
-            <ExpenseList items={EXPENSES} />
+            <ExpenseList items={MOCK_DATA} />
         </>
     );
 }

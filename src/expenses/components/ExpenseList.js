@@ -11,16 +11,19 @@ const ExpenseList = (props) => {
         </div>
     }
 
+    const onlyExpenses = props.items.filter(i => i.Category !== 'Savings');
+    let sortedExpenses = onlyExpenses.sort((a, b) => new Date(...a.Date.split('/').reverse()) - new Date(...b.Date.split('/').reverse()));
+
     return (
         <ul className={classes.expenseList}>
-            {props.items.map(expense => 
+            {sortedExpenses.map(expense => 
                 <ExpenseItem 
                     key={expense.id}
                     id={expense.id}
-                    category={expense.category}
-                    date={expense.date}
-                    amount={expense.amount}
-                    comments={expense.comments} />
+                    category={expense.Category}
+                    date={expense.Date}
+                    amount={expense.Amount}
+                    comments={expense.Comments} />
             )}
         </ul>
     );

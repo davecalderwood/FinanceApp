@@ -11,6 +11,7 @@ const Header = (props) => {
                 <h1>Expense App</h1>
                 <NavLink to="/" className={classes.link}>Home</NavLink>
                 <NavLink to="/expenses" className={classes.link}>Expenses</NavLink>
+                <NavLink to="/Savings" className={classes.link}>Savings</NavLink>
                 <Button onClick={props.onShowModal}>Add Expense</Button>
             </header>
 

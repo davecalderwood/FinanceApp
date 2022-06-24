@@ -1,10 +1,10 @@
-import React, { useCallback, useReducer, useState } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 
-import { VALIDATOR_MIN, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
+import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
 import classes from '../styles/AddExpense.module.scss';
 
 const EXPENSES = [
@@ -88,6 +88,15 @@ const EditExpense = (props) => {
                         styles={colorStyles}
                         placeholder="Select an option" />
                 </div>
+
+                <Input 
+                    id="comments"
+                    element="textarea" 
+                    label="Comments" 
+                    placeholder="Comments"
+                    rows={20}
+                    value={expenseToUpdate.comments}
+                    onInput={() => {}} />
 
                 <div className={classes.buttonBar}>
                     <Button type="button" onClick={props.onClose}>Close</Button>

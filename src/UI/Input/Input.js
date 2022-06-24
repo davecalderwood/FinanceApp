@@ -42,22 +42,25 @@ const Input = (props) => {
         dispatch({type: 'TOUCH'})
     }
 
-    const element = props.element === 'input' ? 
-        <input 
-            id={props.id} 
-            type={props.type}
-            placeholder={props.placeholder}
-            onChange={changeHandler}
-            onBlur={touchHandler}
-            value={inputState.value} /> : 
-        <textarea 
-            id={props.id} 
-            rows={props.rows || 3}
-            type={props.type}
-            placeholder={props.placeholder}
-            onChange={changeHandler}
-            onBlur={touchHandler}
-            value={inputState.value} />;
+    const element =
+    props.element === 'input' ? (
+      <input
+        id={props.id}
+        type={props.type}
+        placeholder={props.placeholder}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        value={inputState.value}
+      />
+    ) : (
+      <textarea
+        id={props.id}
+        rows={props.rows || 3}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        value={inputState.value}
+      />
+    );
 
     const inputValidClass = !inputState.isValid && inputState.isTouched ? classes.formControlInvalid : '';
 
