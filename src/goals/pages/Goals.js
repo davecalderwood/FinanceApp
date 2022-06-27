@@ -6,6 +6,7 @@ const Goals = () => {
     return (
         <>
             <Goal />
+            {/* Test push after branch protection */}
         </>
     );
 }
