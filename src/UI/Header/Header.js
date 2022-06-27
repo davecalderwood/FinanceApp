@@ -9,21 +9,21 @@ const Header = (props) => {
         <div>
             <header className={classes.header}>
                 <h1>Expense App</h1>
-                <NavLink 
-                    to="/" 
+                <NavLink
+                    to="/"
                     className={classes.link}
-                    onClick={() => props.setColor("#ebe3ff")}>Home
+                    onClick={() => props.setColor()}>Home
                 </NavLink>
 
-                <NavLink 
-                    to="/expenses" 
+                <NavLink
+                    to="/expenses"
                     className={classes.link}
                     onClick={() => props.setColor("#ffe0e0")}>Expenses
                 </NavLink>
 
-                <NavLink 
-                    to="/Savings" 
-                    className={classes.link} 
+                <NavLink
+                    to="/Savings"
+                    className={classes.link}
                     onClick={() => props.setColor("#e7ffe3")}>Savings
                 </NavLink>
 
@@ -36,5 +36,5 @@ const Header = (props) => {
         </div>
     );
 }
- 
+
 export default Header;
