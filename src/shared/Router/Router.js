@@ -2,6 +2,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Dashboard from '../../dashboard/pages/Dashboard';
 import Expenses from '../../expenses/pages/Expenses';
+import AddGoal from '../../goals/pages/AddGoal';
+import Goals from '../../goals/pages/Goals';
 import Savings from '../../savings/pages/Savings';
 import User from '../../user/pages/User';
 
@@ -13,11 +15,14 @@ const Router = () => {
             <Route path="/User" element={<User />} />
             <Route path="/Savings" element={<Savings />} />
 
+            <Route path="/Goals" element={<Goals />} />
+            <Route path="/AddGoal" element={<AddGoal />} />
+
             <Route
                 path="*"
                 element={<Dashboard to="/" replace />} />
         </Routes>
     );
 }
- 
+
 export default Router;
