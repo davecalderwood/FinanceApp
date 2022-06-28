@@ -5,3 +5,13 @@
     padding: 0;
     cursor: pointer;
 }
+
+.pageTitle {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .goals {
+        justify-content: center;
+    }
+}

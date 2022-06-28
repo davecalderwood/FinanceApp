@@ -3,6 +3,8 @@ import Select from 'react-select';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
+import useForm from '../../shared/Hooks/useForm'
+import moment from 'moment'
 
 import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
 import classes from '../styles/AddExpense.module.scss';
@@ -26,11 +28,22 @@ const EditExpense = (props) => {
         setSelectedOption(selectedOption);
     };
 
-    const formSubmitHandler = event => {
-        event.preventDefault();
-    }
-
     const expenseToUpdate = props;
+
+    const [formState, inputHandler] = useForm({
+        amount: {
+            value: expenseToUpdate.amount,
+            isValid: false
+        },
+        date: { 
+            value: expenseToUpdate.date,  
+            isValid: false 
+        },
+        comments: { 
+            value: expenseToUpdate.comments,  
+            isValid: false 
+        },
+    }, false);
 
     if (!expenseToUpdate) {
         return (
@@ -40,10 +53,18 @@ const EditExpense = (props) => {
         );
     }
 
+    const updateExpenseHandler = event => {
+        event.preventDefault();
+        console.log(formState.inputs);
+    }
+
+    const formatDate = () => {
+    }
+
     return (
         <Modal onClose={props.onClose}>
             <h2 className={classes.title}>Edit Expense</h2>
-            <form className={classes.expenseForm} onSubmit={formSubmitHandler}>                    
+            <form className={classes.expenseForm} onSubmit={updateExpenseHandler}>                    
                 <Input 
                     id="amount"
                     element="input" 
@@ -51,8 +72,9 @@ const EditExpense = (props) => {
                     label="Cost" 
                     placeholder="Cost USD"
                     validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(0)]}
-                    onInput={() => {}}
-                    value={expenseToUpdate.amount}
+                    onInput={inputHandler}
+                    value={formState.inputs.amount.value}
+                    valid={formState.inputs.amount.isValid}
                     errorText="Please Enter a Valid Number" />
                     
                 <Input
@@ -60,11 +82,13 @@ const EditExpense = (props) => {
                     element="input"
                     type="date"
                     label="Date"
+                    data-date-format="DD MMMM YYYY"
                     maxDate={new Date()}
                     validators={[VALIDATOR_REQUIRE()]}
-                    value={expenseToUpdate.date}
-                    errorText="Please enter a valid date."
-                    onInput={() => {}} />
+                    onInput={inputHandler}
+                    value={moment(formState.inputs.date.value).format('yyyy-MM-DD')}
+                    valid={formState.inputs.date.isValid}
+                    errorText="Please Enter a Valid Date" />
 
                 <div className={classes.dropdown}>
                     <label><strong>Category</strong></label>
@@ -86,8 +110,9 @@ const EditExpense = (props) => {
                     label="Comments" 
                     placeholder="Comments"
                     rows={20}
-                    value={expenseToUpdate.comments}
-                    onInput={() => {}} />
+                    onInput={inputHandler}
+                    value={formState.inputs.comments.value}
+                    valid={formState.inputs.comments.isValid} />
 
                 <div className={classes.buttonBar}>
                     <Button type="button" onClick={props.onClose}>Close</Button>

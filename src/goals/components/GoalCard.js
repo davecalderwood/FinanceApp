@@ -9,7 +9,7 @@ const GoalCard = (props) => {
 
     const routeHandler = (event) => {
         console.log("Click", props);
-        event.preventDefault();
+        // event.preventDefault();
         navigate('/AddGoal', props);
     }
 

@@ -16,6 +16,7 @@ const ExpenseItem = (props) => {
     
     const showEditModalHanlder = () => {
         setShowEditModal(true);
+        console.log(props);
     }
     const hideEditModalHanlder = () => {
         setShowEditModal(false);
