@@ -56,24 +56,6 @@ const Header = (props) => {
                     <h1>Expense App</h1>
                         {navLinks}
                 </div>
-                <h1>Expense App</h1>
-                <NavLink
-                    to="/"
-                    className={classes.link}
-                    onClick={() => props.setColor()}>Home
-                </NavLink>
-
-                <NavLink
-                    to="/expenses"
-                    className={classes.link}
-                    onClick={() => props.setColor("#ffe0e0")}>Expenses
-                </NavLink>
-
-                <NavLink
-                    to="/Savings"
-                    className={classes.link}
-                    onClick={() => props.setColor("#e7ffe3")}>Savings
-                </NavLink>
 
                 <Button onClick={props.onShowModal}>Add Expense</Button>
             </header>
