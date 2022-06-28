@@ -57,3 +57,10 @@
         color: red;
     }
 }
+
+@media (max-width: 768px) {
+    .expenseItem,
+    .expandedItem {
+        width: 90vw;
+    }
+}

@@ -13,3 +13,10 @@
     width: 300px;
     margin: auto;
 }
+
+@media (max-width: 768px) {
+    .expenseList {
+        padding: 0;
+    }
+    
+}

@@ -32,6 +32,9 @@ const Header = (props) => {
     const openDrawerHandler = () => {
         setDrawerOpen(true);
     }
+    const closeDrawerHandler = () => {
+        setDrawerOpen(false);
+    }
 
 
     return (
@@ -44,7 +47,7 @@ const Header = (props) => {
                     <span />
                 </div>
 
-                {drawerOpen && <SideDrawer>
+                {drawerOpen && <SideDrawer onClick={closeDrawerHandler}>
                         <nav className={classes["main-navigation__drawer-nav"]}>
                             <div className={classes.drawerNav}>
                                 {navLinks}
