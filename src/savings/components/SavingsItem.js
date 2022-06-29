@@ -14,7 +14,7 @@ const SavingsItem = (props) => {
     const expandItemHandler = () => {
         setShowItemDetails(!showItemDetails);
     }
-    
+
     const showEditModalHanlder = () => {
         setShowEditModal(true);
     }
@@ -54,20 +54,20 @@ const SavingsItem = (props) => {
                 {expandIcon}
             </div>
 
-            {showItemDetails && 
+            {showItemDetails &&
                 <div className={classes.showDetails}>
                     {props.comments}
 
                     <div className={classes.editDelete}>
-                        <span className={classes.edit} onClick={showEditModalHanlder}>Edit</span> / 
+                        <span className={classes.edit} onClick={showEditModalHanlder}>Edit</span> /
                         <span className={classes.edit} onClick={showDeleteModalHanlder}>Delete</span>
                     </div>
                 </div>
             }
             {showEditModal && <EditExpense onClose={hideEditModalHanlder} {...props} />}
-            {showDeleteModal && <DeleteExpense onClose={hideDeleteModalHanlder} />}
+            {showDeleteModal && <DeleteExpense onClose={hideDeleteModalHanlder} {...props} />}
         </li>
     );
 }
- 
+
 export default SavingsItem;
