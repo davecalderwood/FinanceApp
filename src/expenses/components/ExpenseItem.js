@@ -4,10 +4,14 @@ import classes from '../styles/ExpenseItem.module.scss';
 import DeleteExpense from './DeleteExpense';
 import EditExpense from './EditExpense';
 
+// This is where the individual expense item will render and have all its logic on it
+
 const ExpenseItem = (props) => {
+    // use state to show each modal
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+    // show or hide comments and edit/delete functionality
     const [showItemDetails, setShowItemDetails] = useState(false);
 
     const expandItemHandler = () => {
@@ -30,6 +34,7 @@ const ExpenseItem = (props) => {
 
     const expandIcon = showItemDetails ? <FaChevronCircleUp onClick={expandItemHandler} /> : <FaChevronCircleDown onClick={expandItemHandler} />;
 
+    // Destructure category text to make UI look better, JSON does not have spaces
     var categoryText = props.category;
     if (categoryText === "OnlineShopping") {
         categoryText = "Online Shopping";
@@ -40,6 +45,8 @@ const ExpenseItem = (props) => {
     return (
         <li className={showItemDetails ? classes.expandedItem : classes.expenseItem}>
 
+            {/* everything here will just be props.whatever, this will not be specific at all, 
+            just shows where each item is shown from the Expenses.js data */}
             <div className={classes.hideDetails}>
                 <div className={classes.expenseItemAmount}>
                     ${props.amount}
@@ -54,6 +61,7 @@ const ExpenseItem = (props) => {
                 {expandIcon}
             </div>
 
+            {/* const [showItemDetails, setShowItemDetails] = useState(false); will show or hide the individual item specifics */}
             {showItemDetails &&
                 <div className={classes.showDetails}>
                     {props.comments}

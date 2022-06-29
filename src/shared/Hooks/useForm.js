@@ -1,5 +1,10 @@
 import { useReducer, useCallback } from 'react';
 
+// useForm is not a React Hook, this is a custom one I built to show how to create and use custom hooks
+// This app has an "Add Expense" and "Edit Expense" modal which will both behave very similarly
+// This custom hook would prevent re-writing lots of code that is identical
+// The useForm will have two items to destructure, initialInputs and initialFormValidity
+
 const formReducer = (state, action) => {
     switch (action.type) {
         case 'INPUT_CHANGE':
