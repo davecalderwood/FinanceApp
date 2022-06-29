@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import Modal from '../../UI/Modal/Modal';
 import Button from '../../UI/Button/Button';
@@ -22,28 +22,47 @@ const options = [
 ];
 
 const EditExpense = (props) => {
-    const [selectedOption, setSelectedOption] = useState(null);;
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const dropdownSelectHandler = selectedOption => {
         setSelectedOption(selectedOption);
     };
 
-    const expenseToUpdate = props;
-
-    const [formState, inputHandler] = useForm({
+    const [formState, inputHandler, setFormData] = useForm({
         amount: {
-            value: expenseToUpdate.amount,
+            value: '',
             isValid: false
         },
-        date: { 
-            value: expenseToUpdate.date,  
-            isValid: false 
+        date: {
+            value: '',
+            isValid: false
         },
-        comments: { 
-            value: expenseToUpdate.comments,  
-            isValid: false 
+        comments: {
+            value: '',
+            isValid: false
         },
     }, false);
+
+    const expenseToUpdate = props;
+
+    useEffect(() => {
+        setFormData({
+            amount: {
+                value: expenseToUpdate.amount,
+                isValid: false
+            },
+            date: {
+                value: expenseToUpdate.date,
+                isValid: false
+            },
+            comments: {
+                value: expenseToUpdate.comments,
+                isValid: false
+            },
+        }, true);
+        setIsLoading(false);
+    }, [setFormData, expenseToUpdate]);
 
     if (!expenseToUpdate) {
         return (
@@ -58,69 +77,75 @@ const EditExpense = (props) => {
         console.log(formState.inputs);
     }
 
-    const formatDate = () => {
+    if (isLoading) {
+        return (
+            <div className={classes.center}>
+                <h3>Loading...</h3>
+            </div>
+        );
     }
 
     return (
         <Modal onClose={props.onClose}>
             <h2 className={classes.title}>Edit Expense</h2>
-            <form className={classes.expenseForm} onSubmit={updateExpenseHandler}>                    
-                <Input 
-                    id="amount"
-                    element="input" 
-                    type="number" 
-                    label="Cost" 
-                    placeholder="Cost USD"
-                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(0)]}
-                    onInput={inputHandler}
-                    value={formState.inputs.amount.value}
-                    valid={formState.inputs.amount.isValid}
-                    errorText="Please Enter a Valid Number" />
-                    
-                <Input
-                    id="date"
-                    element="input"
-                    type="date"
-                    label="Date"
-                    data-date-format="DD MMMM YYYY"
-                    maxDate={new Date()}
-                    validators={[VALIDATOR_REQUIRE()]}
-                    onInput={inputHandler}
-                    value={moment(formState.inputs.date.value).format('yyyy-MM-DD')}
-                    valid={formState.inputs.date.isValid}
-                    errorText="Please Enter a Valid Date" />
+            {formState.inputs.amount.value &&
+                <form className={classes.expenseForm} onSubmit={updateExpenseHandler}>
+                    <Input
+                        id="amount"
+                        element="input"
+                        type="number"
+                        label="Cost"
+                        placeholder="Cost USD"
+                        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(0)]}
+                        onInput={inputHandler}
+                        value={formState.inputs.amount.value}
+                        valid={formState.inputs.amount.isValid}
+                        errorText="Please Enter a Valid Number" />
 
-                <div className={classes.dropdown}>
-                    <label><strong>Category</strong></label>
-                    <Select 
-                        id="categoryDropdown"
-                        options={options} 
-                        onChange={dropdownSelectHandler} 
-                        defaultValue={selectedOption}
-                        selected={selectedOption}
-                        isSearchable={false}
-                        className={classes.dropdownClass}
-                        styles={colorStyles}
-                        placeholder="Select an option" />
-                </div>
+                    <Input
+                        id="date"
+                        element="input"
+                        type="date"
+                        label="Date"
+                        data-date-format="DD MMMM YYYY"
+                        maxDate={new Date()}
+                        validators={[VALIDATOR_REQUIRE()]}
+                        onInput={inputHandler}
+                        value={moment(formState.inputs.date.value).format('yyyy-MM-DD')}
+                        valid={formState.inputs.date.isValid}
+                        errorText="Please Enter a Valid Date" />
 
-                <Input 
-                    id="comments"
-                    element="textarea" 
-                    label="Comments" 
-                    placeholder="Comments"
-                    rows={20}
-                    onInput={inputHandler}
-                    value={formState.inputs.comments.value}
-                    valid={formState.inputs.comments.isValid} />
+                    <div className={classes.dropdown}>
+                        <label><strong>Category</strong></label>
+                        <Select
+                            id="categoryDropdown"
+                            options={options}
+                            onChange={dropdownSelectHandler}
+                            defaultValue={selectedOption}
+                            selected={selectedOption}
+                            isSearchable={false}
+                            className={classes.dropdownClass}
+                            styles={colorStyles}
+                            placeholder="Select an option" />
+                    </div>
 
-                <div className={classes.buttonBar}>
-                    <Button type="button" onClick={props.onClose}>Close</Button>
-                    <Button type="submit">Submit</Button>
-                </div>
-            </form>
+                    <Input
+                        id="comments"
+                        element="textarea"
+                        label="Comments"
+                        placeholder="Comments"
+                        rows={20}
+                        onInput={inputHandler}
+                        value={formState.inputs.comments.value}
+                        valid={formState.inputs.comments.isValid} />
+
+                    <div className={classes.buttonBar}>
+                        <Button type="button" onClick={props.onClose}>Close</Button>
+                        <Button type="submit">Submit</Button>
+                    </div>
+                </form>}
         </Modal>
     );
 }
- 
+
 export default EditExpense;

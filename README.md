@@ -1,70 +1,142 @@
-# Getting Started with Create React App
+Do you have questions on what React Hooks are? https://reactjs.org/docs/hooks-intro.html
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks are functions that let you “hook into” React state and lifecycle features from function components
 
-## Available Scripts
+<!-- useState -->
+1. useState Hook - Create State Variables
 
-In the project directory, you can run:
+When you declare your setter function, in most cases you will prefix it with the word "set"
 
-### `npm start`
+You can then use "setIsLoading" to set the state for the isLoading variable
+example: setIsLoading(false) at the end of a data call function, you could then use this to toggle a loading animation while the API call is running:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+const [isLoading, setIsLoading] = useState(true);
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+if (isLoading) {
+    loadingAnimation
+}
+OR in JSX
+{isLoading && loadingAnimation}
+```
 
-### `npm test`
+<!-- useEffect -->
+2. useEffect Hook - Perform Side Effects
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Side effects are actions that can change our component state in an unpredictable fashion (that have caused 'side effects').
+useEffect accepts a callback function (called the 'effect' function), which will by default run every time the component re-renders.
 
-### `npm run build`
+```
+const [value, setValue] = useState('initial');
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+useEffect(() => {
+  // This effect uses the `value` variable,
+  // so it "depends on" `value`.
+  console.log(value);
+}, [value])  // pass `value` as a dependency
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+NOTE: useEffect Does Not Actively “Watch”. You can pass the special value of empty array [] as a way of saying “only run on mount, and clean up on unmount”. Or you can add dependencies [value] when you need this side effect to re-run
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- useRef -->
+3. useRef Hook - Reference React Elements
 
-### `npm run eject`
+useRef allows us to easily use React refs. They are helpful (as in the example below) when we want to directly interact with an element, such as to clear its value or focus it, as with an input. Essentially, useRef is like a “box” that can hold a mutable value in its .current property.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+const inputEl = useRef(null);
+<input ref={inputEl} type="text" />
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- useCallback -->
+4. useCallback Hook - Prevents Callbacks from Being Recreated
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+useCallback is a hook that is used for improving our component performance. The most common usage is to have a parent component with a state variable, but you want to update that state from a child component.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
 
-## Learn More
+<!-- useContext -->
+5. useContext Hook - Helps Us Avoid Prop Drilling
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In React, we want to avoid the following problem of creating multiple props to pass data down two or more levels from a parent component. Context is helpful for passing props down multiple levels of child components from a parent component and sharing state across our app component tree.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This is really helpful for a sitewide object, like a shopping cart, where you would need to add an item to the cart from anywhere on the site. 
 
-### Code Splitting
+```
+const ThemeContext = React.createContext(themes.light);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
 
-### Analyzing the Bundle Size
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
 
-### Making a Progressive Web App
+<!-- useReducer -->
+6. useReducer Hook - Powerful State Management Tool
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+useReducer is a hook for state management, much like useState, and relies upon a kind of function called a reducer. useReducer can be used in many of the same ways that useState can, but is more helpful for managing state across multiple components that may involve different operations or "actions".
 
-### Advanced Configuration
+If you have an object that has 10 different states, it would be much easier to put it all into one useReducer, rather than 10 different useState's. You will need to reach for useReducer less than useState around your app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+const initialState = {count: 0};
 
-### Deployment
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
+    </>
+  );
+}
+```
 
-### `npm run build` fails to minify
+Here you could write: 
+```
+const [count, setCount] = useState(initialCount);
+<button onClick={() => setCount(initialCount)}>Reset</button>
+<button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+<button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Downside of using useState here is you have to set the count individually on each button. The code is almost identical for this, so useReducer would make this highly re-usable accross components
