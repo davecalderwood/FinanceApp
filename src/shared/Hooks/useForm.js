@@ -10,6 +10,11 @@ const formReducer = (state, action) => {
         case 'INPUT_CHANGE':
             let formIsValid = true;
             for (const inputId in state.inputs) {
+                // If input is undefined then we can skip this and move to the next part of the form
+                // Look at Auth.js to see this in action, switching between login and signup mode will change the form validity requirement checks
+                if (!state.inputs[inputId]) {
+                    continue;
+                }
                 if (inputId === action.inputId) {
                     formIsValid = formIsValid && action.isValid;
                 } else {

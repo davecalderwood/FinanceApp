@@ -1,5 +1,6 @@
 import React from 'react';
 import CardSmall from '../../UI/Card/CardSmall';
+import Card from '../../UI/Card/Card'
 import { useNavigate } from "react-router-dom";
 
 import classes from '../styles/GoalCard.module.scss';
