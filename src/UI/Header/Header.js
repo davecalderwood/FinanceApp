@@ -35,11 +35,11 @@ const Header = (props) => {
                 onClick={() => props.setColor("#e7ffe3")}>Savings
             </NavLink>}
 
-            {!auth.isLoggedIn && <NavLink
+            {/* {!auth.isLoggedIn && <NavLink
                 to="/Auth"
                 className={classes.link}
                 onClick={() => props.setColor("#ffffff")}>Auth
-            </NavLink>}
+            </NavLink>} */}
         </div>
 
     const openDrawerHandler = () => {
