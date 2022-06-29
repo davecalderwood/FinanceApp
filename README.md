@@ -1,3 +1,12 @@
+NOTES FOR THIS SITE
+
+Clone the repo into your desired location: run git clone https://github.com/davecalderwood/FinanceApp.git
+Make sure you run npm i to install all the required dependencies for the project
+
+I am looking to turn this into a full-stack app with (most likely) express and MongoDB. If you have any questions please let me know.
+
+NOTES ON REACT HOOKS
+
 Do you have questions on what React Hooks are? https://reactjs.org/docs/hooks-intro.html
 
 Hooks are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks are functions that let you “hook into” React state and lifecycle features from function components
