@@ -1,8 +1,16 @@
 .button {
+    background-color: #613293;
+}
+
+.deleteButton {
+    background-color: red;
+}
+
+.button,
+.deleteButton {
     cursor: pointer;
     font: inherit;
     border: none;
-    background-color: #613293;
     color: white;
     padding: 0.75rem 3rem;
     display: flex;
@@ -19,6 +27,7 @@
     background-color: #9255d3;
 }
 
+.deleteButton:disabled,
 .button:disabled {
     background-color: var(--disabled-background);
     border: var(--border-disabled);
@@ -53,15 +62,19 @@
     0% {
         transform: scale(1);
     }
+
     10% {
         transform: scale(0.9);
     }
+
     30% {
         transform: scale(1.1);
     }
+
     50% {
         transform: scale(1.15);
     }
+
     100% {
         transform: scale(1);
     }

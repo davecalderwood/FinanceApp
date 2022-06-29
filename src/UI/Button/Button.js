@@ -3,9 +3,12 @@ import React from 'react';
 import classes from './Button.module.scss';
 
 const Button = (props) => {
+
+    const classAlt = props.type === 'delete' ? classes.deleteButton : classes.button;
+
     return (
-        <button 
-            className={classes.button} 
+        <button
+            className={classAlt}
             onClick={props.onClick}
             type={props.type}
             disabled={props.disabled}>
@@ -13,5 +16,5 @@ const Button = (props) => {
         </button>
     );
 }
- 
+
 export default Button;

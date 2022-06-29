@@ -1,15 +1,18 @@
 .title {
     text-align: center;
 }
+
 .expenseForm {
     width: 80%;
     margin: auto;
 }
+
 .buttonBar {
     display: flex;
     justify-content: center;
     margin-top: 15px;
 }
+
 .datePicker {
     width: 100%;
     height: 30px;
@@ -18,15 +21,38 @@
     background: #f8f8f8;
     padding: 0.15rem 0.25rem;
 }
+
 .dropdown {
     margin-top: 15px;
 }
+
 .dropdownClass {
     width: 102%;
 }
+
 .center {
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.deleteItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+}
+
+.deleteExpense {
+    color: red;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.deleteButton {
+    border: 3px solid red;
+    background-color: rgb(255, 167, 167);
 }
