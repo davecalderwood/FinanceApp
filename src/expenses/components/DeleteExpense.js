@@ -7,16 +7,13 @@ import classes from '../styles/AddExpense.module.scss';
 const DeleteExpense = (props) => {
     const [enableButton, setEnableButton] = useState(false);
 
+    // Disable delete button for X seconds to prevent user error
     useEffect(() => {
         setTimeout(() => setEnableButton(true), 2000);
     }, []);
 
     const deleteHandler = () => {
         console.log("Delete", props.amount, props.comments);
-    }
-
-    const myComponentStyle = {
-        background: 'red'
     }
 
     return (
@@ -41,7 +38,6 @@ const DeleteExpense = (props) => {
                     type="delete"
                     onClick={deleteHandler}
                     disabled={!enableButton}
-                    style={{ background: 'red' }}
                     className={classes.deleteButton}>Delete</Button>
             </div>
         </Modal>

@@ -88,7 +88,7 @@ const EditExpense = (props) => {
     return (
         <Modal onClose={props.onClose}>
             <h2 className={classes.title}>Edit Expense</h2>
-            {formState.inputs.amount.value &&
+            {/* {formState.inputs.amount.value && */}
                 <form className={classes.expenseForm} onSubmit={updateExpenseHandler}>
                     <Input
                         id="amount"
@@ -135,6 +135,7 @@ const EditExpense = (props) => {
                         label="Comments"
                         placeholder="Comments"
                         rows={20}
+                        validators={[VALIDATOR_REQUIRE()]}
                         onInput={inputHandler}
                         value={formState.inputs.comments.value}
                         valid={formState.inputs.comments.isValid} />
@@ -143,7 +144,8 @@ const EditExpense = (props) => {
                         <Button type="button" onClick={props.onClose}>Close</Button>
                         <Button type="submit">Submit</Button>
                     </div>
-                </form>}
+                </form>
+                {/* } */}
         </Modal>
     );
 }

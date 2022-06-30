@@ -89,6 +89,7 @@ const AddExpense = (props) => {
                     label="Comments" 
                     placeholder="Comments"
                     rows={10}
+                    validators={[VALIDATOR_REQUIRE()]}
                     onInput={inputHandler} />
 
                 <div className={classes.buttonBar}>
