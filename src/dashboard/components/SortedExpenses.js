@@ -1,9 +1,6 @@
 import React from 'react';
 import MOCK_DATA from '../../MOCK_DATA.json';
-import SmallCard from '../../UI/Card/CardSmall';
-
-import classes from '../styles/SortedExpenses.module.scss';
-import MontlyCost from './MonthlyCost';
+import MonthlyCost from './MonthlyCost';
 
 const SortedExpenses = () => {
     var monthsList = [
@@ -21,25 +18,31 @@ const SortedExpenses = () => {
         {label: "December", value: '12', totalExpenses: 0},
     ]
     
+    // Filter out expenses
     const expenses = MOCK_DATA.filter(i => i.Category !== 'Savings');
-    let sortedExpenses = expenses.sort((a, b) => new Date(...a.Date.split('/').reverse()) - new Date(...b.Date.split('/').reverse()));
-    var data = JSON.parse(JSON.stringify(sortedExpenses));
+    // Parse data
+    var data = JSON.parse(JSON.stringify(expenses));
+    // Slice and compare year
     const dates = data.filter((d) => d.Date.slice(-4) === new Date().getFullYear().toString());
 
     dates.forEach(i => {
         var expense = i.Amount;
+        // From Date slice to get month
         var month = i.Date.slice(0, 2);
+        // Find the month value that equals the sliced out month
         monthsList.find(m => m.value === month);
 
         for (let j = 0; j < monthsList.length; j++) {
             if (monthsList[j].value === month) {
+                // If month value === current month in array then add expense to monthly total
                 monthsList[j].totalExpenses += expense;
             }
         }
     });
 
+    // pass props to MonthlyCost function
     const monthlyCost = monthsList.map(item => {
-        return <MontlyCost
+        return <MonthlyCost
             key={item.id}
             id={item.id}
             total={item.totalExpenses}
