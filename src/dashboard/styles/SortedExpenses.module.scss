@@ -1,5 +1,8 @@
 .data {
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
+    font-size: 20px;
+}
+.label {
+    font-weight: bold;
 }

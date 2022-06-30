@@ -3,6 +3,7 @@ import MOCK_DATA from '../../MOCK_DATA.json';
 import SmallCard from '../../UI/Card/CardSmall';
 
 import classes from '../styles/SortedExpenses.module.scss';
+import MontlyCost from './MonthlyCost';
 
 const SortedExpenses = () => {
     var monthsList = [
@@ -37,21 +38,17 @@ const SortedExpenses = () => {
         }
     });
 
-    for (let j = 0; j < monthsList.length; j++) {
-
-        console.log(monthsList[j].label, monthsList[j].totalExpenses);
-    }
+    const monthlyCost = monthsList.map(item => {
+        return <MontlyCost
+            key={item.id}
+            id={item.id}
+            total={item.totalExpenses}
+            label={item.label} />
+    })
 
     return (
         <>
-            {monthsList.map(i => {
-                return <SmallCard>
-                    <div className={classes.data}>
-                        {i.label}
-                        {i.totalExpenses}
-                    </div>
-                </SmallCard>
-            })}
+            {monthlyCost}
         </>
     );
 }
