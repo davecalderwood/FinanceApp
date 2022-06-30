@@ -5,6 +5,8 @@
     .dashboardItem {
         margin: 15px;
         width: 100%;
+        display: flex;
+        flex-wrap: wrap;
     }
 }
 
