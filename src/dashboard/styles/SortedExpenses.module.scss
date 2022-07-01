@@ -3,6 +3,24 @@
     flex-direction: column;
     font-size: 20px;
 }
+
 .label {
     font-weight: bold;
+}
+
+.dropdown {
+    width: 300px;
+    margin: auto;
+}
+
+.dropdownAndCards {
+    display: flex;
+    flex-direction: column;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }
