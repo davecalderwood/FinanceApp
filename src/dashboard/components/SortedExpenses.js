@@ -13,24 +13,24 @@ const SortedExpenses = () => {
         setSelectedOption(selectedOption);
     };
     var monthsList = [
-        { label: "Janurary", value: '01', totalExpenses: 0 },
-        { label: "February", value: '02', totalExpenses: 0 },
-        { label: "March", value: '03', totalExpenses: 0 },
-        { label: "April", value: '04', totalExpenses: 0 },
-        { label: "May", value: '05', totalExpenses: 0 },
-        { label: "June", value: '06', totalExpenses: 0 },
-        { label: "July", value: '07', totalExpenses: 0 },
-        { label: "August", value: '08', totalExpenses: 0 },
-        { label: "September", value: '09', totalExpenses: 0 },
-        { label: "October", value: '10', totalExpenses: 0 },
-        { label: "November", value: '11', totalExpenses: 0 },
-        { label: "December", value: '12', totalExpenses: 0 },
+        { label: "Janurary", value: '01', totalExpenses: 0, totalSavings: 0 },
+        { label: "February", value: '02', totalExpenses: 0, totalSavings: 0 },
+        { label: "March", value: '03', totalExpenses: 0, totalSavings: 0 },
+        { label: "April", value: '04', totalExpenses: 0, totalSavings: 0 },
+        { label: "May", value: '05', totalExpenses: 0, totalSavings: 0 },
+        { label: "June", value: '06', totalExpenses: 0, totalSavings: 0 },
+        { label: "July", value: '07', totalExpenses: 0, totalSavings: 0 },
+        { label: "August", value: '08', totalExpenses: 0, totalSavings: 0 },
+        { label: "September", value: '09', totalExpenses: 0, totalSavings: 0 },
+        { label: "October", value: '10', totalExpenses: 0, totalSavings: 0 },
+        { label: "November", value: '11', totalExpenses: 0, totalSavings: 0 },
+        { label: "December", value: '12', totalExpenses: 0, totalSavings: 0 },
     ]
 
     // Filter out expenses
     const expenses = MOCK_DATA.filter(i => i.Category !== 'Savings');
     // Parse data
-    var data = JSON.parse(JSON.stringify(expenses));
+    var data = JSON.parse(JSON.stringify(MOCK_DATA));
     // Slice and compare year
     const dates = data.filter((d) => d.Date.slice(-4) === selectedOption.value);
 
@@ -44,7 +44,11 @@ const SortedExpenses = () => {
         for (let j = 0; j < monthsList.length; j++) {
             if (monthsList[j].value === month) {
                 // If month value === current month in array then add expense to monthly total
-                monthsList[j].totalExpenses += expense;
+                if (i.Category === "Savings") {
+                    monthsList[j].totalSavings += expense;
+                } else {
+                    monthsList[j].totalExpenses += expense;
+                }
             }
         }
     });
@@ -54,7 +58,8 @@ const SortedExpenses = () => {
         return <MonthlyCost
             key={item.id}
             id={item.id}
-            total={item.totalExpenses}
+            expenses={item.totalExpenses}
+            savings={item.totalSavings}
             label={item.label} />
     });
 

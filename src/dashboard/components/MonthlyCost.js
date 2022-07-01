@@ -10,12 +10,15 @@ const MonthlyCost = (props) => {
                 <div className={classes.label}>
                     {props.label}
                 </div>
-                <div className={classes.total}>
-                    ${props.total}
+                <div className={classes.expenses}>
+                    ${props.expenses}
+                </div>
+                <div className={classes.savings}>
+                    ${props.savings}
                 </div>
             </div>
         </SmallCard>
     );
 }
- 
+
 export default MonthlyCost;
