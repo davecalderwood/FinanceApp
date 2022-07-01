@@ -3,6 +3,7 @@ import ExpenseChart from '../components/ExpenseChart';
 import SavingsGoal from '../components/SavingsGoal';
 import SortedExpenses from '../components/SortedExpenses';
 
+// CSS Modules let you use the same CSS class name in different files without worrying about naming clashes.
 import classes from '../styles/Dashboard.module.scss';
 
 const Dashboard = () => {
@@ -24,5 +25,5 @@ const Dashboard = () => {
         </>
     );
 }
- 
+
 export default Dashboard;

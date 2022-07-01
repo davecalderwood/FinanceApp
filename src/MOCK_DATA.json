@@ -604,7 +604,7 @@
     {
         "id": 87,
         "Date": "11/02/2020",
-        "Amount": 211,
+        "Amount": 2110,
         "Category": "Savings",
         "Comments": "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus."
     },
@@ -2445,7 +2445,7 @@
     {
         "id": 350,
         "Date": "12/10/2020",
-        "Amount": 268,
+        "Amount": 1783,
         "Category": "Savings",
         "Comments": "Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo."
     },
@@ -2767,7 +2767,7 @@
     {
         "id": 396,
         "Date": "05/16/2022",
-        "Amount": 257,
+        "Amount": 2570,
         "Category": "Savings",
         "Comments": null
     },

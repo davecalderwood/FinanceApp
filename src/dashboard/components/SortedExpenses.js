@@ -27,8 +27,6 @@ const SortedExpenses = () => {
         { label: "December", value: '12', totalExpenses: 0, totalSavings: 0 },
     ]
 
-    // Filter out expenses
-    const expenses = MOCK_DATA.filter(i => i.Category !== 'Savings');
     // Parse data
     var data = JSON.parse(JSON.stringify(MOCK_DATA));
     // Slice and compare year
@@ -88,7 +86,6 @@ const SortedExpenses = () => {
             <div className={classes.cards}>{monthlyCost}</div>
 
             <div class={classes.chart}>
-                {/* {expenseChart} */}
                 <ExpenseChart total={monthsList} />
             </div>
         </div>
