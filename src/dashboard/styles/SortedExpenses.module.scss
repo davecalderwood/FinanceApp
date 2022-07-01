@@ -24,3 +24,15 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.chart {
+    max-width: 1200px;
+    margin: auto;
+}
+
+// @media (max-width: 768px) {
+//     .chart {
+//         width: 100%;
+//         margin: auto;
+//     }
+// }

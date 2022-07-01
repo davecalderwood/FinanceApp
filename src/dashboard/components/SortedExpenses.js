@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import MOCK_DATA from '../../MOCK_DATA.json';
 import MonthlyCost from './MonthlyCost';
 import Select from 'react-select';
+import ExpenseChart from './ExpenseChart';
 
 import classes from '../styles/SortedExpenses.module.scss';
 
 const SortedExpenses = () => {
-    const [selectedOption, setSelectedOption] = useState('2022');
+    const [selectedOption, setSelectedOption] = useState(2022);
 
     const dropdownSelectHandler = (selectedOption) => {
         setSelectedOption(selectedOption);
@@ -55,13 +56,15 @@ const SortedExpenses = () => {
             id={item.id}
             total={item.totalExpenses}
             label={item.label} />
-    })
+    });
 
+    // Add dropdown options from list of data
     var options = [...new Set(data.map(item => item.Date.slice(-4)))];
     var dropdownOptions = [];
     options.forEach(element => {
         dropdownOptions.push({ label: element, value: element });
     });
+    // Sort in order
     dropdownOptions.sort((a, b) => a.value > b.value ? 1 : -1);
 
     return (
@@ -78,6 +81,11 @@ const SortedExpenses = () => {
             </div>
 
             <div className={classes.cards}>{monthlyCost}</div>
+
+            <div class={classes.chart}>
+                {/* {expenseChart} */}
+                <ExpenseChart total={monthsList} />
+            </div>
         </div>
     );
 }
