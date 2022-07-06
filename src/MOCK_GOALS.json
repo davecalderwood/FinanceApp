@@ -5,11 +5,11 @@
         "goalStartDate": "01/01/2022",
         "goalEndDate": "12/31/2022",
         "goalStartingAmount": 0,
-        "goalCurrentAmount": 6521,
+        "goalCurrentAmount": 5321,
         "goalEndAmount": 10000
     },
     {
-        "id": 1,
+        "id": 2,
         "title": "2021 Savings Account",
         "goalStartDate": "01/01/2021",
         "goalEndDate": "12/31/2021",

@@ -15,7 +15,6 @@ const ActiveGoal = (props) => {
         return 'rgb(' + r + ',' + g + ',0)';
     }
 
-
     return (
         <Card>
             <div className={classes.goal}>
@@ -23,7 +22,7 @@ const ActiveGoal = (props) => {
 
                 <div className={classes.progress}>
                     <div className={classes.labels}>
-                        <div>${props.startingAmount}</div>
+                        {/* <div>${props.startingAmount}</div> */}
                         <div>{props.startDate}</div>
 
                     </div>

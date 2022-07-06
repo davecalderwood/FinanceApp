@@ -1,8 +1,14 @@
-.goal {
+.goal,
+.oldGoal {
     width: 100%;
     padding: 15px;
     margin: auto;
 }
+
+.oldGoal {
+    background: red;
+}
+
 
 .progress {
     display: flex;
