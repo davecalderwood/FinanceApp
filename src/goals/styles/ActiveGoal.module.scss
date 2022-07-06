@@ -1,0 +1,21 @@
+.goal {
+    width: 100%;
+    padding: 15px;
+    margin: auto;
+}
+
+.progress {
+    display: flex;
+    justify-content: space-between;
+
+    .labels {
+        display: flex;
+        flex-direction: column;
+        padding: 0 35px 0 35px;
+    }
+
+    .progressBar {
+        flex: 1;
+        align-self: center;
+    }
+}

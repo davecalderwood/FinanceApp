@@ -17,23 +17,34 @@ const Header = (props) => {
 
     const navLinks =
         <div className={classes.navLinks}>
-            {auth.isLoggedIn && <NavLink
-                to="/"
-                className={classes.link}
-                onClick={() => props.setColor("#ebe3ff")}>Home
-            </NavLink>}
+            {auth.isLoggedIn &&
+                <>
+                    <NavLink
+                        to="/"
+                        className={classes.link}
+                        onClick={() => props.setColor("#ebe3ff")}>Home
+                    </NavLink>
 
-            {auth.isLoggedIn && <NavLink
-                to="/expenses"
-                className={classes.link}
-                onClick={() => props.setColor("#ffe0e0")}>Expenses
-            </NavLink>}
+                    <NavLink
+                        to="/expenses"
+                        className={classes.link}
+                        onClick={() => props.setColor("#ffe0e0")}>Expenses
+                    </NavLink>
 
-            {auth.isLoggedIn && <NavLink
-                to="/Savings"
-                className={classes.link}
-                onClick={() => props.setColor("#e7ffe3")}>Savings
-            </NavLink>}
+                    <NavLink
+                        to="/Savings"
+                        className={classes.link}
+                        onClick={() => props.setColor("#e7ffe3")}>Savings
+                    </NavLink>
+
+
+                    <NavLink
+                        to="/Goals"
+                        className={classes.link}
+                        onClick={() => props.setColor("#e7ffe3")}>Goals
+                    </NavLink>
+                </>
+            }
 
             {/* {!auth.isLoggedIn && <NavLink
                 to="/Auth"
