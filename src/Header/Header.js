@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import financeImage from '../../assets/finance.jpg';
+import financeImage from '../assets/finance.jpg';
 import classes from './Header.module.scss';
-import Button from '../Button/Button'
+import Button from '../UI/Button/Button'
 import SideDrawer from './SideDrawer';
-import { AuthContext } from '../../shared/Context/auth-context';
+import { AuthContext } from '../shared/Context/auth-context';
 import { FaUserCircle } from "react-icons/fa";
+import HoverMenuButton from './HoverMenuButton.js'
 
 const Header = (props) => {
     // auth is now an object that will hold the isLoggedIn, login, logout
@@ -45,12 +46,6 @@ const Header = (props) => {
                     </NavLink>
                 </>
             }
-
-            {/* {!auth.isLoggedIn && <NavLink
-                to="/Auth"
-                className={classes.link}
-                onClick={() => props.setColor("#ffffff")}>Auth
-            </NavLink>} */}
         </div>
 
     const openDrawerHandler = () => {
@@ -58,12 +53,6 @@ const Header = (props) => {
     }
     const closeDrawerHandler = () => {
         setDrawerOpen(false);
-    }
-
-    const logoutHandler = () => {
-        auth.logout();
-        navigate('/Auth', { replace: true });
-        props.setColor("#ffffff")
     }
 
 
@@ -90,9 +79,16 @@ const Header = (props) => {
                     {navLinks}
                 </div>
 
+                {/* {auth.isLoggedIn && <Button onClick={logoutHandler}><FaUserCircle /> Logout</Button>} */}
+
                 <div className={classes.loggedInButtons}>
                     {auth.isLoggedIn && <Button onClick={props.onShowModal}>Add Expense</Button>}
-                    {auth.isLoggedIn && <Button onClick={logoutHandler}><FaUserCircle /> Logout</Button>}
+                    {auth.isLoggedIn && <div className={classes.hoverMenu}>
+                        <span>Profile</span>
+                        <div className={classes.subMenu}>
+                            <HoverMenuButton props={props} />
+                        </div>
+                    </div>}
                 </div>
             </header>
 

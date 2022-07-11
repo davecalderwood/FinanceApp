@@ -8,6 +8,7 @@ import Goals from '../../goals/pages/Goals';
 import Savings from '../../savings/pages/Savings';
 import User from '../../user/pages/User';
 import AuthenticateUser from '../Authenticate/Auth';
+import ProfilePage from '../../user/pages/Profile';
 
 const Router = () => {
     const auth = useContext(AuthContext);
@@ -24,6 +25,8 @@ const Router = () => {
 
                 <Route path="/Goals" element={<Goals />} />
                 <Route path="/AddGoal" element={<AddGoal />} />
+
+                <Route path="/Profile" element={<ProfilePage />} />
 
                 <Route
                     path="*"

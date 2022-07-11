@@ -6,10 +6,11 @@ const CurrentGoals = (props) => {
 
     const oldGoalToggleHandler = () => {
         setShowOldGoals(prevMode => !prevMode)
+        checkIfGoalRangeIncludesToday()
     }
 
+    var isActiveGoal = false;
     const checkIfGoalRangeIncludesToday = () => {
-        var isActiveGoal = false;
 
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -29,6 +30,9 @@ const CurrentGoals = (props) => {
     const goalsList = props.items.map(i => i);
 
     const goals = goalsList.map(goal => {
+        if (isActiveGoal) {
+
+        }
         return <ActiveGoal
             key={goal.id}
             id={goal.id}

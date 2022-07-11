@@ -1,0 +1,36 @@
+.subMenu {
+    text-transform: uppercase;
+    position: absolute;
+    left: 0;
+
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin-top: 10px;
+
+    &:hover {
+
+        .subMenuItem {
+            display: block;
+            cursor: pointer;
+            text-align: center;
+        }
+    }
+}
+
+.subMenuItem {
+    background-color: #613293;
+    cursor: pointer;
+    font: inherit;
+    border: none;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: bold;
+    border: 3px solid transparent;
+
+    &:hover {
+        background-color: #9255d3;
+    }
+}

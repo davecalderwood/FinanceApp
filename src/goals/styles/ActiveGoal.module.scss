@@ -6,22 +6,41 @@
 }
 
 .oldGoal {
-    background: red;
+    background: rgb(163, 163, 163);
 }
 
 
 .progress {
     display: flex;
     justify-content: space-between;
+    padding-bottom: 15px;
 
     .labels {
         display: flex;
         flex-direction: column;
+        justify-content: center;
         padding: 0 35px 0 35px;
     }
 
     .progressBar {
         flex: 1;
         align-self: center;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .goal,
+    .oldGoal {
+        padding: 0;
+    }
+
+    .progress {
+        flex-direction: column;
+        padding: 5px;
+
+        .progressBar {
+            width: 90%;
+        }
     }
 }
