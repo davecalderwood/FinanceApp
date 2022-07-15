@@ -9,6 +9,7 @@ import Savings from '../../savings/pages/Savings';
 import User from '../../user/pages/User';
 import AuthenticateUser from '../Authenticate/Auth';
 import ProfilePage from '../../user/pages/Profile';
+import MonthlyBudget from '../../Budget/Pages/MonthlyBudget';
 
 const Router = () => {
     const auth = useContext(AuthContext);
@@ -27,6 +28,8 @@ const Router = () => {
                 <Route path="/AddGoal" element={<AddGoal />} />
 
                 <Route path="/Profile" element={<ProfilePage />} />
+
+                <Route path="/Budget" element={<MonthlyBudget />} />
 
                 <Route
                     path="*"

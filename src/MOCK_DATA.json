@@ -3498,5 +3498,40 @@
         "Amount": 286,
         "Category": "Savings",
         "Comments": "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo."
+    },
+    {
+        "id": 501,
+        "Date": "07/01/2022",
+        "Amount": 286,
+        "Category": "Travel",
+        "Comments": "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo."
+    },
+    {
+        "id": 502,
+        "Date": "07/03/2022",
+        "Amount": 201,
+        "Category": "Savings",
+        "Comments": "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo."
+    },
+    {
+        "id": 502,
+        "Date": "07/05/2022",
+        "Amount": 309,
+        "Category": "OnlineShopping",
+        "Comments": "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo."
+    },
+    {
+        "id": 503,
+        "Date": "07/05/2022",
+        "Amount": 1000,
+        "Category": "Income",
+        "Comments": "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo."
+    },
+    {
+        "id": 504,
+        "Date": "07/01/2022",
+        "Amount": 932,
+        "Category": "Travel",
+        "Comments": "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo."
     }
 ]

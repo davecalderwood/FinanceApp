@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Card from '../../UI/Card/Card.js';
 
 const ProfilePage = () => {
+
     return (
         <>
-            <p>Profile</p>
+            <Card>
+            </Card>
         </>
     );
 }

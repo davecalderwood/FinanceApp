@@ -22,7 +22,7 @@ const ExpenseList = (props) => {
     }
 
     // Filter out Savings; Those are not important for Expenses page
-    const onlyExpenses = props.items.filter(i => i.Category !== 'Savings');
+    const onlyExpenses = props.items.filter(i => i.Category !== 'Savings' && i.Category !== 'Income');
     // Sort Expenses by date
     let sortedExpenses = onlyExpenses.sort((a, b) => new Date(...a.Date.split('/').reverse()) - new Date(...b.Date.split('/').reverse()));
     // parse JSON
