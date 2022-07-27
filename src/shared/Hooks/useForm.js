@@ -1,5 +1,4 @@
 import { useReducer, useCallback } from 'react';
-// https://reactjs.org/docs/hooks-overview.html
 
 // useForm is not a React Hook, this is a custom one I built to show how to create and use custom hooks
 // This app has an "Add Expense" and "Edit Expense" modal which will both behave very similarly

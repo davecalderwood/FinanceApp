@@ -31,10 +31,14 @@ const AddExpense = (props) => {
             value: "",
             isValid: false
         },
-        // new: {
-        //     value: '',
-        //     isValid: false
-        // },
+        comments: {
+            value: "",
+            isValid: false
+        },
+        new: {
+            value: '',
+            isValid: false
+        },
     }, false);
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -94,6 +98,7 @@ const AddExpense = (props) => {
                     placeholder="Comments"
                     rows={10}
                     validators={[VALIDATOR_REQUIRE()]}
+                    errorText="Please add a comment."
                     onInput={inputHandler} />
                 {/* 
                 <Input
