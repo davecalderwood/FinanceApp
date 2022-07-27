@@ -4,7 +4,7 @@ import Select from 'react-select';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import Modal from '../../UI/Modal/Modal';
-import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
+import { VALIDATOR_MIN, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
 import useForm from '../../shared/Hooks/useForm';
 
 import classes from '../styles/AddExpense.module.scss';
@@ -27,10 +27,14 @@ const AddExpense = (props) => {
             value: '',
             isValid: false
         },
-        date: { 
-            value: "",  
-            isValid: false 
+        date: {
+            value: "",
+            isValid: false
         },
+        // new: {
+        //     value: '',
+        //     isValid: false
+        // },
     }, false);
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -48,17 +52,17 @@ const AddExpense = (props) => {
         <Modal onClose={props.onClose}>
             <h2 className={classes.title}>Add Expense</h2>
 
-            <form className={classes.expenseForm} onSubmit={formSubmitHandler}>                    
-                <Input 
+            <form className={classes.expenseForm} onSubmit={formSubmitHandler}>
+                <Input
                     id="amount"
-                    element="input" 
-                    type="number" 
-                    label="Cost" 
+                    element="input"
+                    type="number"
+                    label="Cost"
                     placeholder="Cost USD"
                     validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(0)]}
                     onInput={inputHandler}
                     errorText="Please Enter a Valid Number" />
-                    
+
                 <Input
                     id="date"
                     element="input"
@@ -71,10 +75,10 @@ const AddExpense = (props) => {
 
                 <div className={classes.dropdown}>
                     <label><strong>Category</strong></label>
-                    <Select 
+                    <Select
                         id="categoryDropdown"
-                        options={options} 
-                        onChange={dropdownSelectHandler} 
+                        options={options}
+                        onChange={dropdownSelectHandler}
                         defaultValue={selectedOption}
                         selected={selectedOption}
                         isSearchable={false}
@@ -83,14 +87,24 @@ const AddExpense = (props) => {
                         placeholder="Select an option" />
                 </div>
 
-                <Input 
+                <Input
                     id="comments"
-                    element="textarea" 
-                    label="Comments" 
+                    element="textarea"
+                    label="Comments"
                     placeholder="Comments"
                     rows={10}
                     validators={[VALIDATOR_REQUIRE()]}
                     onInput={inputHandler} />
+                {/* 
+                <Input
+                    id="new"
+                    element="input"
+                    type="text"
+                    label="Extra Text"
+                    placeholder="Extra Text"
+                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(3)]}
+                    onInput={inputHandler}
+                    errorText="Please Enter a Valid Number and min length of 3 characters" /> */}
 
                 <div className={classes.buttonBar}>
                     <Button type="button" onClick={props.onClose}>Close</Button>
@@ -101,5 +115,5 @@ const AddExpense = (props) => {
         </Modal>
     );
 }
- 
+
 export default AddExpense;

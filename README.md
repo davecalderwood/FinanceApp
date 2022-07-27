@@ -1,7 +1,7 @@
 NOTES FOR THIS SITE
 
 Clone the repo into your desired location: run git clone https://github.com/davecalderwood/FinanceApp.git
-Make sure you run npm i to install all the required dependencies for the project
+Make sure you run ```npm i``` to install all the required dependencies for the project
 
 I am looking to turn this into a full-stack app with (most likely) express and MongoDB. If you have any questions please let me know.
 
@@ -36,6 +36,8 @@ OR in JSX
 
 Side effects are actions that can change our component state in an unpredictable fashion (that have caused 'side effects').
 useEffect accepts a callback function (called the 'effect' function), which will by default run every time the component re-renders.
+Gets called when the component mounts, unmounts and any of it's dependencies change.
+You can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined.
 
 ```
 const [value, setValue] = useState('initial');
@@ -64,6 +66,8 @@ const inputEl = useRef(null);
 
 useCallback is a hook that is used for improving our component performance. The most common usage is to have a parent component with a state variable, but you want to update that state from a child component.
 
+Normally, if you have a child component that receives a function prop, at each re-render of the parent component, this function will be re-executed; by using useCallback() you ensure that this function is only re-executed when any value on it's dependency array changes.
+useCallback is the same as useMemo except that it remembers the function itself rather than its return value
 ```
 const memoizedCallback = useCallback(
   () => {

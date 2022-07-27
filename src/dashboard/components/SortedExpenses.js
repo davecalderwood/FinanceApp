@@ -39,13 +39,13 @@ const SortedExpenses = () => {
         // Find the month value that equals the sliced out month
         monthsList.find(m => m.value === month);
 
-        for (let j = 0; j < monthsList.length; j++) {
-            if (monthsList[j].value === month) {
+        for (const element of monthsList) {
+            if (element.value === month) {
                 // If month value === current month in array then add expense to monthly total
                 if (i.Category === "Savings") {
-                    monthsList[j].totalSavings += expense;
+                    element.totalSavings += expense;
                 } else {
-                    monthsList[j].totalExpenses += expense;
+                    element.totalExpenses += expense;
                 }
             }
         }
