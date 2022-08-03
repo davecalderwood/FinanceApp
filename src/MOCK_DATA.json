@@ -3533,5 +3533,33 @@
         "Amount": 932,
         "Category": "Travel",
         "Comments": "Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo."
+    },
+    {
+        "id": 505,
+        "Date": "07/31/2022",
+        "Amount": 300,
+        "Category": "Misc",
+        "Comments": "Car Payment for July."
+    },
+    {
+        "id": 506,
+        "Date": "08/01/2022",
+        "Amount": 45,
+        "Category": "Gas",
+        "Comments": ""
+    },
+    {
+        "id": 507,
+        "Date": "08/02/2022",
+        "Amount": 108,
+        "Category": "Dining Out",
+        "Comments": "Dinner after pick up from airport"
+    },
+    {
+        "id": 508,
+        "Date": "08/03/2022",
+        "Amount": 63,
+        "Category": "Misc",
+        "Comments": "Birthday present"
     }
 ]

@@ -1,63 +1,37 @@
 import React from 'react';
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
+import moment from 'moment';
+import BudgetItems from './BudgetItems';
 
 const Budget = (props) => {
-    // All items get passed as props to this component
-    // Filter out all items that match this month/year
-    // Sort into each group
-    // Pass into chart
-    let newDate = new Date()
-    // Get current month and format to be two digits (MM)
-    let month = ((newDate.getMonth() + 1) < 10 ? '0' : '') + (newDate.getMonth() + 1);
-    // Get YYYY
-    let year = newDate.getFullYear();
 
-    const data = props.items;
-    let currentData = [];
-    data.forEach(item => {
-        // check if item is within this month and year
-        if (item.Date.slice(-4) === year.toString() && item.Date.slice(0, 2) === month.toString()) {
-            currentData.push(item)
-        }
-    });
-
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-    var total = 0;
-    var newCategory = [];
-    var catTotal = 0;
-    currentData.forEach(i => {
-        if (!newCategory.includes(i.Category)) {
-            newCategory.push(i.Category);
-        }
-    });
-    for (let j = 0; j < newCategory.length; j++) {
-        if (currentData.Category === newCategory[j]) {
-            catTotal += currentData.Amount
-        }
+    // Get current weekly data from Sunday-Saturday
+    var currentDate = moment();
+    var weekStart = currentDate.clone().startOf('week');
+    var days = [];
+    for (var i = 0; i <= 6; i++) {
+        days.push(moment(weekStart).add(i, 'days').format("MM/DD/YYYY"));
     }
 
-    // var chartData = [
-    //     {name: chartCategories, value: }
-    // ]
+    const weeklyData = props.items.filter(i => days.includes(i.Date));
+    var budgetData = JSON.parse(JSON.stringify(weeklyData));
+
+    const budgetItems = budgetData.map(expense => {
+        return <BudgetItems
+            key={expense.id}
+            id={expense.id}
+            category={expense.Category}
+            date={expense.Date}
+            amount={expense.Amount}
+            comments={expense.Comments} />
+    })
+
+
 
     return (
         <>
-            {/* <PieChart width={400} height={400}>
-                <Pie
-                    data={chartData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    outerRadius={80}
-                    fill="#8884d8"
-                    dataKey="value"
-                >
-                    {data.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                </Pie>
-            </PieChart> */}
+            <p>Weekly Budget</p>
+
+            {budgetItems}
         </>
     );
 }
