@@ -1,0 +1,26 @@
+.budgetBuilder {
+    width: 400px;
+    margin: auto;
+}
+
+.budgetBuilderBody {
+    display: flex
+}
+
+.income {
+    border-right: 3px solid grey;
+    flex: 1;
+}
+
+.expenses {
+    flex: 1;
+}
+
+.title {
+    text-align: center;
+}
+
+.expenseItem {
+    padding: 15px;
+    width: 400px;
+}

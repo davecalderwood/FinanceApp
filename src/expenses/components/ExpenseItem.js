@@ -3,6 +3,7 @@ import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
 import classes from '../styles/ExpenseItem.module.scss';
 import DeleteExpense from './DeleteExpense';
 import EditExpense from './EditExpense';
+import Tooltip from '../../UI/Tooltip/Tooltip';
 
 // This is where the individual expense item will render and have all its logic on it
 
@@ -43,38 +44,43 @@ const ExpenseItem = (props) => {
     }
 
     return (
-        <li className={showItemDetails ? classes.expandedItem : classes.expenseItem}>
+        <>
+            <Tooltip content={props.amount} direction="right">
+                <li className={showItemDetails ? classes.expandedItem : classes.expenseItem}>
 
-            {/* everything here will just be props.whatever, this will not be specific at all, 
+                    {/* everything here will just be props.whatever, this will not be specific at all, 
             just shows where each item is shown from the Expenses.js data */}
-            <div className={classes.hideDetails}>
-                <div className={classes.expenseItemAmount}>
-                    ${props.amount}
-                </div>
-                <div className={classes.expenseItemCategory}>
-                    {categoryText}
-                </div>
-                <div className={classes.expenseItemDate}>
-                    {props.date}
-                </div>
 
-                {expandIcon}
-            </div>
+                    <div className={classes.hideDetails}>
+                        <div className={classes.expenseItemAmount}>
+                            ${props.amount}
+                        </div>
+                        <div className={classes.expenseItemCategory}>
+                            {categoryText}
+                        </div>
+                        <div className={classes.expenseItemDate}>
+                            {props.date}
+                        </div>
 
-            {/* const [showItemDetails, setShowItemDetails] = useState(false); will show or hide the individual item specifics */}
-            {showItemDetails &&
-                <div className={classes.showDetails}>
-                    {props.comments}
-
-                    <div className={classes.editDelete}>
-                        <span className={classes.edit} onClick={showEditModalHanlder}>Edit</span> /
-                        <span className={classes.edit} onClick={showDeleteModalHanlder}>Delete</span>
+                        {expandIcon}
                     </div>
-                </div>
-            }
-            {showEditModal && <EditExpense onClose={hideEditModalHanlder} {...props} />}
-            {showDeleteModal && <DeleteExpense onClose={hideDeleteModalHanlder} {...props} />}
-        </li>
+
+                    {/* const [showItemDetails, setShowItemDetails] = useState(false); will show or hide the individual item specifics */}
+                    {showItemDetails &&
+                        <div className={classes.showDetails}>
+                            {props.comments}
+
+                            <div className={classes.editDelete}>
+                                <span className={classes.edit} onClick={showEditModalHanlder}>Edit</span> /
+                                <span className={classes.edit} onClick={showDeleteModalHanlder}>Delete</span>
+                            </div>
+                        </div>
+                    }
+                    {showEditModal && <EditExpense onClose={hideEditModalHanlder} {...props} />}
+                    {showDeleteModal && <DeleteExpense onClose={hideDeleteModalHanlder} {...props} />}
+                </li>
+            </Tooltip>
+        </>
     );
 }
 

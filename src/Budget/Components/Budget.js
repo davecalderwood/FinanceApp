@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import BudgetItems from './BudgetItems';
+import BudgetBuilder from './BudgetBuilder';
 
 const Budget = (props) => {
 
@@ -29,9 +30,9 @@ const Budget = (props) => {
 
     return (
         <>
-            <p>Weekly Budget</p>
+            {/* <p>Weekly Budget</p> */}
 
-            {budgetItems}
+            {/* {budgetItems} */}
         </>
     );
 }
