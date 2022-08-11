@@ -1,9 +1,11 @@
 NOTES FOR THIS SITE
 -------------------------------
+This is a finance app that is intended as a learning/training app for React. I will be adding more components to it as people request them or as I think of more things to add. 
+
 Clone the repo into your desired location: run git clone https://github.com/davecalderwood/FinanceApp.git
 Make sure you run ```npm i``` to install all the required dependencies for the project
 
-I am looking to turn this into a full-stack app with (most likely) express and MongoDB. If you have any questions please let me know.
+I am thinking of turning into a full-stack app with (most likely) express and MongoDB. If you have any questions please let me know.
 
 NOTES ON REACT HOOKS
 -------------------------------
