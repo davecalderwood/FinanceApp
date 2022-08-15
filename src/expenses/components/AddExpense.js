@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-
+import moment from 'moment';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import Modal from '../../UI/Modal/Modal';
-import { VALIDATOR_MIN, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
+import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
 import useForm from '../../shared/Hooks/useForm';
+import Localbase from 'localbase'
 
 import classes from '../styles/AddExpense.module.scss';
 
@@ -34,12 +35,12 @@ const AddExpense = (props) => {
         comments: {
             value: "",
             isValid: false
-        },
-        new: {
-            value: '',
-            isValid: false
-        },
+        }
     }, false);
+
+    const id = Math.random();
+
+    let db = new Localbase('db');
 
     const [selectedOption, setSelectedOption] = useState(null);
 
@@ -49,7 +50,15 @@ const AddExpense = (props) => {
 
     const formSubmitHandler = event => {
         event.preventDefault();
-        console.log(formState.inputs, selectedOption);
+        // Use Moment.js to format the date to the format that the rest of the site expects MM/DD/YYYY
+        var formattedDate = moment(formState.inputs.date).format("MM/DD/YYYY");
+        db.collection('expenses').add({
+            id: id,
+            Amount: formState.inputs.amount,
+            Date: formattedDate,
+            Category: selectedOption,
+            Comments: formState.inputs.comments
+        })
     }
 
     return (
@@ -100,16 +109,6 @@ const AddExpense = (props) => {
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please add a comment."
                     onInput={inputHandler} />
-                {/* 
-                <Input
-                    id="new"
-                    element="input"
-                    type="text"
-                    label="Extra Text"
-                    placeholder="Extra Text"
-                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(3)]}
-                    onInput={inputHandler}
-                    errorText="Please Enter a Valid Number and min length of 3 characters" /> */}
 
                 <div className={classes.buttonBar}>
                     <Button type="button" onClick={props.onClose}>Close</Button>

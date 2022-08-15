@@ -28,7 +28,6 @@ const AuthenticateUser = () => {
 
     const authSubmitHandler = event => {
         event.preventDefault();
-        console.log(formState.inputs);
         auth.login();
         navigate('/', { replace: true });
     }

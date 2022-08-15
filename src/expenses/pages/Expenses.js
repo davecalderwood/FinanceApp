@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ExpenseList from '../components/ExpenseList';
+import Localbase from 'localbase'
 
 import MOCK_DATA from '../../MOCK_DATA.json'
 
@@ -11,10 +12,33 @@ import MOCK_DATA from '../../MOCK_DATA.json'
 // ExpenseList will map out the expenses and pass that to the ExpenseItem component
 
 const Expenses = (props) => {
+    const [expenseData, setExpenseData] = useState();
+    const [isLoading, setIsLoading] = useState(true);
+
+    let db = new Localbase('db');
+
+    useEffect(() => {
+        db.collection('expenses').get().then(expenses => {
+            setExpenseData(expenses);
+            setIsLoading(false);
+        });
+    }, []);
+
+    var expensesData;
+    if (isLoading) {
+        expensesData = <p>Loading...</p>
+    }
+    else if (!isLoading) {
+        expensesData = <ExpenseList items={expenseData} />
+    }
+
+
+
 
     return (
         <div>
-            <ExpenseList items={MOCK_DATA} />
+            {expensesData}
+            {/* <ExpenseList items={expenseData} /> */}
         </div>
     );
 }

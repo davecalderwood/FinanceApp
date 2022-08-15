@@ -5,6 +5,16 @@
     align-items: center;
 }
 
+.selectAndTooltip {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.centerText {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
 .expenseList {
     list-style: none;
     display: flex;
