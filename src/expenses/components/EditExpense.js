@@ -80,6 +80,7 @@ const EditExpense = (props) => {
         // Get the id from props and pass that into the .doc({}) object
         // Describe all the fields that might need to be updated with new values
         db.collection('expenses').doc({ id: props.id }).set({
+            id: props.id,
             Amount: formState.inputs.amount,
             Date: formattedDate,
             Category: selectedOption,

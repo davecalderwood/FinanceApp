@@ -43,23 +43,25 @@ const ExpenseList = (props) => {
     // If not then it will get the last 4 characters from the date field (ie. the year) and find all matching items
     // eslint-disable-next-line array-callback-return
     const shownExpenses = sortedExpenses.map(expense => {
-        if (selectedOption.value === 'ALL' || selectedOption === undefined || selectedOption === null) {
-            return <ExpenseItem
-                key={expense.id}
-                id={expense.id}
-                category={expense.Category.value}
-                date={expense.Date}
-                amount={expense.Amount.value}
-                comments={expense.Comments.value} />
-        }
-        if (expense.Date.slice(-4) === selectedOption.value) {
-            return <ExpenseItem
-                key={expense.id}
-                id={expense.id}
-                category={expense.Category.value}
-                date={expense.Date}
-                amount={expense.Amount.value}
-                comments={expense.Comments.value} />
+        if (expense.Category !== null) {
+            if (selectedOption.value === 'ALL' || selectedOption === undefined || selectedOption === null) {
+                return <ExpenseItem
+                    key={expense.id}
+                    id={expense.id}
+                    category={expense.Category.value}
+                    date={expense.Date}
+                    amount={expense.Amount.value}
+                    comments={expense.Comments.value} />
+            }
+            if (expense.Date.slice(-4) === selectedOption.value) {
+                return <ExpenseItem
+                    key={expense.id}
+                    id={expense.id}
+                    category={expense.Category.value}
+                    date={expense.Date}
+                    amount={expense.Amount.value}
+                    comments={expense.Comments.value} />
+            }
         }
     });
 
