@@ -52,6 +52,9 @@ const AddExpense = (props) => {
         event.preventDefault();
         // Use Moment.js to format the date to the format that the rest of the site expects MM/DD/YYYY
         var formattedDate = moment(formState.inputs.date).format("MM/DD/YYYY");
+        // let db = new Localbase('db'); -> db.collection('expenses') will crete a new indexeddb db or will update the existing one
+        // .add will create a new one if none match the name in the collection and will add to the exisiting if it already exists
+        // Describe the data object you want to send to indexeddb
         db.collection('expenses').add({
             id: id,
             Amount: formState.inputs.amount,
