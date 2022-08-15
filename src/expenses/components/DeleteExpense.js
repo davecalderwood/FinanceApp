@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '../../UI/Button/Button';
 import Modal from '../../UI/Modal/Modal';
+import Localbase from 'localbase'
 
 import classes from '../styles/AddExpense.module.scss';
 
@@ -12,8 +13,10 @@ const DeleteExpense = (props) => {
         setTimeout(() => setEnableButton(true), 2000);
     }, []);
 
+    let db = new Localbase('db');
     const deleteHandler = () => {
-        console.log("Delete", props.amount, props.comments);
+        // Get the id from props and pass that into the .doc({}) object
+        db.collection('expenses').doc({ id: props.id }).delete()
     }
 
     return (

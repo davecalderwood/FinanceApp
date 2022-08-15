@@ -5,6 +5,7 @@ import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import useForm from '../../shared/Hooks/useForm'
 import moment from 'moment'
+import Localbase from 'localbase'
 
 import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
 import classes from '../styles/AddExpense.module.scss';
@@ -72,9 +73,18 @@ const EditExpense = (props) => {
         );
     }
 
+    let db = new Localbase('db');
     const updateExpenseHandler = event => {
         event.preventDefault();
-        console.log(formState.inputs);
+        var formattedDate = moment(formState.inputs.date).format("MM/DD/YYYY");
+        // Get the id from props and pass that into the .doc({}) object
+        // Describe all the fields that might need to be updated with new values
+        db.collection('expenses').doc({ id: props.id }).set({
+            Amount: formState.inputs.amount,
+            Date: formattedDate,
+            Category: selectedOption,
+            Comments: formState.inputs.comments
+        })
     }
 
     if (isLoading) {
@@ -89,63 +99,63 @@ const EditExpense = (props) => {
         <Modal onClose={props.onClose}>
             <h2 className={classes.title}>Edit Expense</h2>
             {/* {formState.inputs.amount.value && */}
-                <form className={classes.expenseForm} onSubmit={updateExpenseHandler}>
-                    <Input
-                        id="amount"
-                        element="input"
-                        type="number"
-                        label="Cost"
-                        placeholder="Cost USD"
-                        validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(0)]}
-                        onInput={inputHandler}
-                        value={formState.inputs.amount.value}
-                        valid={formState.inputs.amount.isValid}
-                        errorText="Please Enter a Valid Number" />
+            <form className={classes.expenseForm} onSubmit={updateExpenseHandler}>
+                <Input
+                    id="amount"
+                    element="input"
+                    type="number"
+                    label="Cost"
+                    placeholder="Cost USD"
+                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MIN(0)]}
+                    onInput={inputHandler}
+                    value={formState.inputs.amount.value}
+                    valid={formState.inputs.amount.isValid}
+                    errorText="Please Enter a Valid Number" />
 
-                    <Input
-                        id="date"
-                        element="input"
-                        type="date"
-                        label="Date"
-                        data-date-format="DD MMMM YYYY"
-                        maxDate={new Date()}
-                        validators={[VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                        value={moment(formState.inputs.date.value).format('yyyy-MM-DD')}
-                        valid={formState.inputs.date.isValid}
-                        errorText="Please Enter a Valid Date" />
+                <Input
+                    id="date"
+                    element="input"
+                    type="date"
+                    label="Date"
+                    data-date-format="DD MMMM YYYY"
+                    maxDate={new Date()}
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                    value={moment(formState.inputs.date.value).format('yyyy-MM-DD')}
+                    valid={formState.inputs.date.isValid}
+                    errorText="Please Enter a Valid Date" />
 
-                    <div className={classes.dropdown}>
-                        <label><strong>Category</strong></label>
-                        <Select
-                            id="categoryDropdown"
-                            options={options}
-                            onChange={dropdownSelectHandler}
-                            defaultValue={selectedOption}
-                            selected={selectedOption}
-                            isSearchable={false}
-                            className={classes.dropdownClass}
-                            styles={colorStyles}
-                            placeholder="Select an option" />
-                    </div>
+                <div className={classes.dropdown}>
+                    <label><strong>Category</strong></label>
+                    <Select
+                        id="categoryDropdown"
+                        options={options}
+                        onChange={dropdownSelectHandler}
+                        defaultValue={selectedOption}
+                        selected={selectedOption}
+                        isSearchable={false}
+                        className={classes.dropdownClass}
+                        styles={colorStyles}
+                        placeholder="Select an option" />
+                </div>
 
-                    <Input
-                        id="comments"
-                        element="textarea"
-                        label="Comments"
-                        placeholder="Comments"
-                        rows={20}
-                        validators={[VALIDATOR_REQUIRE()]}
-                        onInput={inputHandler}
-                        value={formState.inputs.comments.value}
-                        valid={formState.inputs.comments.isValid} />
+                <Input
+                    id="comments"
+                    element="textarea"
+                    label="Comments"
+                    placeholder="Comments"
+                    rows={20}
+                    validators={[VALIDATOR_REQUIRE()]}
+                    onInput={inputHandler}
+                    value={formState.inputs.comments.value}
+                    valid={formState.inputs.comments.isValid} />
 
-                    <div className={classes.buttonBar}>
-                        <Button type="button" onClick={props.onClose}>Close</Button>
-                        <Button type="submit">Submit</Button>
-                    </div>
-                </form>
-                {/* } */}
+                <div className={classes.buttonBar}>
+                    <Button type="button" onClick={props.onClose}>Close</Button>
+                    <Button type="submit">Submit</Button>
+                </div>
+            </form>
+            {/* } */}
         </Modal>
     );
 }

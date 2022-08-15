@@ -7,6 +7,12 @@ Make sure you run ```npm i``` to install all the required dependencies for the p
 
 I am thinking of turning into a full-stack app with (most likely) express and MongoDB. If you have any questions please let me know.
 
+INDEXEDDB:
+
+Currently the Add Expense, Edit Expense, Delete Expense, and Expense page all use indexeddb with localbase. The rest of the site still uses the MOCK_DATA.json file for its data (Home, Savings, Goals). 
+
+LocalBase - https://github.com/dannyconnell/localbase#with-npm this is a wrapper node package for indexeddb that provides all the same functionality with tons of shorthand segments for easy readability and usability. I highly recommend this package. 
+
 NOTES ON REACT HOOKS
 -------------------------------
 
