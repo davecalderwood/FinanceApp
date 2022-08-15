@@ -15,6 +15,12 @@ const Tooltip = (props) => {
         setActive(false);
     };
 
+    var tooltipStyle;
+
+    if (props.direction === 'right') {
+        tooltipStyle = classes.right;
+    }
+
     return (
         // Show and hide div based on mouse enter/leave; this is vanilla js functionality and not react specific 
         <div
@@ -24,7 +30,7 @@ const Tooltip = (props) => {
         >
             {props.children}
             {active && (
-                <div className={`${classes.tooltipTip} ${props.direction || "top"}`}>
+                <div className={`${classes.tooltipTip} ${tooltipStyle}`}>
                     {/* Pass content from called function to display here */}
                     {props.content}
                 </div>

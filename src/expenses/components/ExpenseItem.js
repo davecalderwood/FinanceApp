@@ -44,7 +44,7 @@ const ExpenseItem = (props) => {
     }
 
     return (
-        <>
+        <div className={classes.itemPosition}>
             <Tooltip content={props.comments} direction="right">
                 <li className={showItemDetails ? classes.expandedItem : classes.expenseItem}>
 
@@ -80,7 +80,7 @@ const ExpenseItem = (props) => {
                     {showDeleteModal && <DeleteExpense onClose={hideDeleteModalHanlder} {...props} />}
                 </li>
             </Tooltip>
-        </>
+        </div>
     );
 }
 

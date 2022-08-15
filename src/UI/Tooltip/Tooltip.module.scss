@@ -57,22 +57,23 @@
 
 /* Absolute positioning */
 .tooltipTip.right {
-    left: calc(100% + var(--tooltip-margin));
-    top: 50%;
-    transform: translateX(0) translateY(-50%);
+    // left: calc(100% + var(--tooltip-margin));
+    // top: 50%;
+    // transform: translateX(0) translateY(-50%);
 }
 
 /* CSS border triangles */
 .tooltipTip.right::before {
-    left: calc(var(--tooltip-arrow-size) * -1);
-    top: 50%;
-    transform: translateX(0) translateY(-50%);
-    border-right-color: var(--tooltip-background-color);
+    // left: calc(var(--tooltip-arrow-size) * -1);
+    // top: 50%;
+    // transform: translateX(0) translateY(-50%);
+    // border-right-color: var(--tooltip-background-color);
 }
 
 /* Absolute positioning */
 .tooltipTip.bottom {
     bottom: calc(var(--tooltip-margin) * -1);
+    color: green;
 }
 
 /* CSS border triangles */
