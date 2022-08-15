@@ -16,31 +16,32 @@
 /* Absolute positioning */
 .tooltipTip {
     position: absolute;
-    // border-radius: 5px;
+    border-radius: 5px;
+    max-width: 250px;
     // left: 50%;
     // transform: translateX(-50%);
-    // padding: 6px;
-    // color: var(--tooltip-text-color);
-    // background: var(--tooltip-background-color);
-    // border: 2px solid var(--tooltip-border-color);
-    // font-size: 14px;
-    // font-family: sans-serif;
-    // line-height: 1;
-    // z-index: 100;
-    // white-space: nowrap;
+    padding: 6px;
+    color: var(--tooltip-text-color);
+    background: var(--tooltip-background-color);
+    border: 2px solid var(--tooltip-border-color);
+    font-size: 14px;
+    font-family: sans-serif;
+    line-height: 1;
+    z-index: 100;
+    white-space: wrap;
 }
 
 /* CSS border triangles */
 .tooltipTip::before {
     content: " ";
-    // left: 50%;
-    // border: solid transparent;
-    // height: 0;
-    // width: 0;
-    // position: absolute;
-    // pointer-events: none;
-    // border-width: var(--tooltip-arrow-size);
-    // margin-left: calc(var(--tooltip-arrow-size) * -1);
+    left: 50%;
+    border: solid transparent;
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-width: var(--tooltip-arrow-size);
+    margin-left: calc(var(--tooltip-arrow-size) * -1);
 }
 
 /* Absolute positioning */

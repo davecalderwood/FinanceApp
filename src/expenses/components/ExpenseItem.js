@@ -45,7 +45,7 @@ const ExpenseItem = (props) => {
 
     return (
         <>
-            <Tooltip content={props.amount} direction="right">
+            <Tooltip content={props.comments} direction="right">
                 <li className={showItemDetails ? classes.expandedItem : classes.expenseItem}>
 
                     {/* everything here will just be props.whatever, this will not be specific at all, 

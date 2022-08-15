@@ -1,8 +1,8 @@
 .expenseItem,
 .expandedItem {
-    width: 600px;
+    width: 400px;
     height: 50px;
-    margin: 15px auto;
+    margin: 15px;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
     overflow: hidden;
@@ -19,6 +19,7 @@
         cursor: pointer;
     }
 }
+
 .expandedItem {
     height: auto;
 }
@@ -30,8 +31,9 @@
     text-align: center;
     margin-top: 15px;
 }
+
 .showDetails {
-    padding: 15px; 
+    padding: 15px;
     transition: transform 1s ease;
 }
 
@@ -39,10 +41,12 @@
     width: 50px;
     text-align: left;
 }
+
 .expenseItemCategory {
     width: 150px;
     text-align: left;
 }
+
 // .expenseItemDate {
 
 // }
@@ -51,6 +55,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 .edit {
 
     &:hover {
@@ -59,6 +64,7 @@
 }
 
 @media (max-width: 768px) {
+
     .expenseItem,
     .expandedItem {
         width: 90vw;

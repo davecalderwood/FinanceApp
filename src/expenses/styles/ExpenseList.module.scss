@@ -7,6 +7,11 @@
 
 .expenseList {
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+    padding: 0;
 }
 
 .dropdownClass {
@@ -18,5 +23,5 @@
     .expenseList {
         padding: 0;
     }
-    
+
 }
