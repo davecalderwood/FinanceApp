@@ -5,7 +5,7 @@ import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
 import useForm from '../../shared/Hooks/useForm'
 import moment from 'moment'
-import Localbase from 'localbase'
+import { db, LIST_TITLES } from '../../shared/LocalBase/localbase';
 
 import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
 import classes from '../styles/AddExpense.module.scss';
@@ -27,6 +27,7 @@ const EditExpense = (props) => {
     const [isLoading, setIsLoading] = useState(true);
 
     const dropdownSelectHandler = selectedOption => {
+
         setSelectedOption(selectedOption);
     };
 
@@ -72,14 +73,12 @@ const EditExpense = (props) => {
             </div>
         );
     }
-
-    let db = new Localbase('db');
     const updateExpenseHandler = event => {
         event.preventDefault();
         var formattedDate = moment(formState.inputs.date).format("MM/DD/YYYY");
         // Get the id from props and pass that into the .doc({}) object
         // Describe all the fields that might need to be updated with new values
-        db.collection('expenses').doc({ id: props.id }).set({
+        db.collection(LIST_TITLES.expenses).doc({ id: props.id }).set({
             id: props.id,
             Amount: formState.inputs.amount,
             Date: formattedDate,

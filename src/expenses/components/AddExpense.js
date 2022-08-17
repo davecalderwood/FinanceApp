@@ -6,7 +6,7 @@ import Input from '../../UI/Input/Input';
 import Modal from '../../UI/Modal/Modal';
 import { VALIDATOR_MIN, VALIDATOR_REQUIRE } from '../../shared/Utils/validators';
 import useForm from '../../shared/Hooks/useForm';
-import Localbase from 'localbase'
+import { db, LIST_TITLES } from '../../shared/LocalBase/localbase';
 
 import classes from '../styles/AddExpense.module.scss';
 
@@ -40,8 +40,6 @@ const AddExpense = (props) => {
 
     const id = Math.random();
 
-    let db = new Localbase('db');
-
     const [selectedOption, setSelectedOption] = useState(null);
 
     const dropdownSelectHandler = selectedOption => {
@@ -55,7 +53,7 @@ const AddExpense = (props) => {
         // let db = new Localbase('db'); -> db.collection('expenses') will crete a new indexeddb db or will update the existing one
         // .add will create a new one if none match the name in the collection and will add to the exisiting if it already exists
         // Describe the data object you want to send to indexeddb
-        db.collection('expenses').add({
+        db.collection(LIST_TITLES.expenses).add({
             id: id,
             Amount: formState.inputs.amount,
             Date: formattedDate,
