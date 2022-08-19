@@ -39,6 +39,7 @@ const ExpenseForBudgetBuilder = (props) => {
                     id: id,
                     Title: formState.inputs.Title.value,
                     Amount: formState.inputs.Amount.value,
+                    Category: "budgetExpenses",
                 });
             }
         })

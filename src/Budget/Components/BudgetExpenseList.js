@@ -8,13 +8,14 @@ const BudgetExpenseList = (props) => {
             key={item.id}
             id={item.id}
             title={item.Title}
-            amount={item.Amount} />
+            amount={item.Amount}
+            category={item.Category} />
     })
 
     return (
-        <>
+        <div>
             {budgetExpenseItems}
-        </>
+        </div>
     );
 }
 
