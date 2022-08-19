@@ -1,26 +1,12 @@
 .budgetBuilder {
-    width: 400px;
-    margin: auto;
+    display: flex;
 }
 
-.budgetBuilderBody {
-    display: flex
-}
-
-.income {
-    border-right: 3px solid grey;
+.budgetBox {
     flex: 1;
+    border: 1px solid black;
 }
 
-.expenses {
-    flex: 1;
-}
-
-.title {
-    text-align: center;
-}
-
-.expenseItem {
-    padding: 15px;
-    width: 400px;
+.expenseList {
+    list-style: none;
 }

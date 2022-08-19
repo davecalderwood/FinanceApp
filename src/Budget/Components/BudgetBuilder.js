@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useForm from '../../shared/Hooks/useForm';
 import { VALIDATOR_MIN } from '../../shared/Utils/validators';
 import Input from '../../UI/Input/Input';
@@ -7,9 +7,16 @@ import Card from '../../UI/Card/Card';
 
 import classes from '../Styles/BudgetBuilder.module.scss';
 import ExpenseForBudgetBuilder from './ExpenseForBudgetBuilder';
+import { db, LIST_TITLES } from '../../shared/LocalBase/localbase';
+import BudgetExpenseList from './BudgetExpenseList';
+import IncomeForBudgetBuilder from './IncomeForBudgetBuilder';
+import BudgetIncomeList from './BudgetIncomeList';
 
 const BudgetBuilder = (props) => {
-    const [showAdd, setShowAdd] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const [showIncomeModal, setShowIncomeModal] = useState(false);
+    const [budgetData, setBudgetData] = useState();
+    const [incomeData, setIncomeData] = useState();
     const [formState, inputHandler] = useForm({
         expectedTakeHome: {
             value: '',
@@ -21,48 +28,53 @@ const BudgetBuilder = (props) => {
         },
     }, false);
 
-    const formSubmitHandler = () => {
+    useEffect(() => {
+        db.collection(LIST_TITLES.budgetExpenses).get().then(expenses => {
+            setBudgetData(expenses);
+        });
+        db.collection(LIST_TITLES.budgetIncome).get().then(income => {
+            setIncomeData(income);
+        });
+    }, []);
+
+    const showModalHanlder = () => {
+        setShowModal(true);
+    }
+    const hideModalHanlder = () => {
+        setShowModal(false);
     }
 
-    const addNewExpenseHandler = () => {
-        setShowAdd(!showAdd);
+    const showIncomeModalHanlder = () => {
+        setShowIncomeModal(true);
+    }
+    const hideIncomeModalHanlder = () => {
+        setShowIncomeModal(false);
     }
 
-    const addNewExpenseForm = showAdd && <Card>
-        <div className={classes.expenseItem}>
-            <ExpenseForBudgetBuilder />
-        </div>
-    </Card>
+    const budgetExpenseData = <BudgetExpenseList items={budgetData} />
+    const incomeDataList = <BudgetIncomeList items={incomeData} />
 
     return (
-        <>
-            <div className={classes.budgetBuilderBody}>
-                <div className={classes.income}>
-                    <h4 className={classes.title}>Monthly Income</h4>
-                </div>
+        <div className={classes.budgetBuilder}>
+            <div className={classes.budgetBox}>
+                <Button onClick={showModalHanlder}>Add Budget Expense</Button>
+                {showModal && <ExpenseForBudgetBuilder onClose={hideModalHanlder} />}
 
-                <div className={classes.expenses}>
-                    <h4 className={classes.title}>Monthly Expenses</h4>
-                    <Button type="button" label="Add Expense" onClick={addNewExpenseHandler}>+</Button>
-                    {addNewExpenseForm}
-                </div>
-
-
-                {/* <form onSubmit={formSubmitHandler} className={classes.budgetBuilder}>
-                    <Input
-                        id="expectedTakeHome"
-                        element="input"
-                        type="number"
-                        label="Income"
-                        placeholder="Expected Take Home Pay (monthly)"
-                        validators={[VALIDATOR_MIN(0)]}
-                        onInput={inputHandler}
-                        errorText="Please Enter a Valid Number" />
-                </form>
-                <Button type="button" label="Add Expense" onClick={addNewExpenseHandler}>+</Button> */}
+                <ul className={classes.expenseList}>
+                    {budgetExpenseData}
+                </ul>
             </div>
 
-        </>
+            <div className={classes.budgetBox}>
+                <Button onClick={showIncomeModalHanlder}>Add Monthly Income</Button>
+                {showIncomeModal && <IncomeForBudgetBuilder onClose={hideIncomeModalHanlder} />}
+
+                <ul className={classes.expenseList}>
+                    {incomeDataList}
+                </ul>
+
+            </div>
+        </div>
     );
 }
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import useForm from '../../shared/Hooks/useForm';
 import { VALIDATOR_MIN, VALIDATOR_MINLENGTH } from '../../shared/Utils/validators';
+import Modal from '../../UI/Modal/Modal';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
-import Modal from '../../UI/Modal/Modal';
 import { db, LIST_TITLES } from '../../shared/LocalBase/localbase';
 
-const ExpenseForBudgetBuilder = (props) => {
-    const [budgetExists, setBudgetExists] = useState(false);
+const IncomeForBudgetBuilder = (props) => {
+    const [incomeExists, setIncomeExists] = useState(false);
     const [formState, inputHandler] = useForm({
         Title: {
             value: '',
@@ -24,18 +24,18 @@ const ExpenseForBudgetBuilder = (props) => {
     const formSubmitHandler = (e) => {
         e.preventDefault();
         console.log(formState.inputs);
-        // db.collection(LIST_TITLES.budgetExpenses).delete();
+        // db.collection(LIST_TITLES.budgetIncome).delete();
 
-        db.collection(LIST_TITLES.budgetExpenses).get().then(items => {
+        db.collection(LIST_TITLES.budgetIncome).get().then(items => {
             console.log(items);
-            // Short hand for checking if item exists in localbase budgetExpenses
+            // Short hand for checking if item exists in localbase budgetIncome
             // Using inputs.Title instead of id since id is currently just a random number; normally I would check by id
             const itemExists = items.some(i => i.Title.toLowerCase() === formState.inputs.Title.value.toLowerCase());
             if (itemExists) {
-                setBudgetExists(true);
+                setIncomeExists(true);
             } else {
-                setBudgetExists(false);
-                db.collection(LIST_TITLES.budgetExpenses).add({
+                setIncomeExists(false);
+                db.collection(LIST_TITLES.budgetIncome).add({
                     id: id,
                     Title: formState.inputs.Title.value,
                     Amount: formState.inputs.Amount.value,
@@ -51,8 +51,8 @@ const ExpenseForBudgetBuilder = (props) => {
                     id="Title"
                     element="input"
                     type="text"
-                    label="Expense"
-                    placeholder="Name of Expense"
+                    label="Income"
+                    placeholder="Income"
                     validators={[VALIDATOR_MINLENGTH(0)]}
                     onInput={inputHandler} />
 
@@ -60,13 +60,13 @@ const ExpenseForBudgetBuilder = (props) => {
                     id="Amount"
                     element="input"
                     type="number"
-                    label="Expected Cost"
+                    label="Expected Income"
                     placeholder="Expected cost for this item"
                     validators={[VALIDATOR_MIN(0)]}
                     onInput={inputHandler}
                     errorText="Please Enter a Valid Number" />
 
-                {budgetExists && <p>Expense item already exists. Please check spelling.</p>}
+                {incomeExists && <p>Income item already exists. Please check spelling.</p>}
 
                 <Button type="submit" disabled={!formState.isValid}>Submit</Button>
             </form>
@@ -74,4 +74,4 @@ const ExpenseForBudgetBuilder = (props) => {
     );
 }
 
-export default ExpenseForBudgetBuilder;
+export default IncomeForBudgetBuilder;

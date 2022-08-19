@@ -61,6 +61,9 @@ const AddExpense = (props) => {
             Category: selectedOption,
             Comments: formState.inputs.comments
         })
+
+        // eslint-disable-next-line no-unused-expressions
+        props.onClose;
     }
 
     return (
