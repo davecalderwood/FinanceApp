@@ -14,9 +14,13 @@ const DeleteBudgetItem = (props) => {
 
     const deleteHandler = () => {
         if (props.category === "budgetExpenses") {
-            db.collection(LIST_TITLES.budgetExpenses).doc({ id: props.id }).delete();
+            db.collection(LIST_TITLES.budgetExpenses).doc({ id: props.id }).delete().then(() => {
+                props.onClose()
+            });;
         } else if (props.category === "budgetIncome") {
-            db.collection(LIST_TITLES.budgetIncome).doc({ id: props.id }).delete();
+            db.collection(LIST_TITLES.budgetIncome).doc({ id: props.id }).delete().then(() => {
+                props.onClose()
+            });;
         }
     }
 

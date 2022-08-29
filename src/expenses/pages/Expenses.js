@@ -15,6 +15,7 @@ const Expenses = (props) => {
     const [expenseData, setExpenseData] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     let db = new Localbase('db');
 
     useEffect(() => {

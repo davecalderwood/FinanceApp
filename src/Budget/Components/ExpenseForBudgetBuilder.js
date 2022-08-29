@@ -40,6 +40,8 @@ const ExpenseForBudgetBuilder = (props) => {
                     Title: formState.inputs.Title.value,
                     Amount: formState.inputs.Amount.value,
                     Category: "budgetExpenses",
+                }).then(() => {
+                    props.onClose()
                 });
             }
         })

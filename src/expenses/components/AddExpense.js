@@ -60,10 +60,9 @@ const AddExpense = (props) => {
             Date: formattedDate,
             Category: selectedOption,
             Comments: formState.inputs.comments
-        })
-
-        // eslint-disable-next-line no-unused-expressions
-        props.onClose;
+        }).then(() => {
+            props.onClose()
+        });
     }
 
     return (

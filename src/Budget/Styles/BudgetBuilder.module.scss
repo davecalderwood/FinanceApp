@@ -10,3 +10,13 @@
 .expenseList {
     list-style: none;
 }
+
+.budgetHeader {
+    display: flex;
+    align-items: center;
+}
+
+.budgetList {
+    display: flex;
+    flex-wrap: wrap;
+}

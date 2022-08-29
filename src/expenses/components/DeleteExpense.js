@@ -15,7 +15,9 @@ const DeleteExpense = (props) => {
 
     const deleteHandler = () => {
         // Get the id from props and pass that into the .doc({}) object
-        db.collection(LIST_TITLES.expenses).doc({ id: props.id }).delete()
+        db.collection(LIST_TITLES.expenses).doc({ id: props.id }).delete().then(() => {
+            props.onClose()
+        });
     }
 
     return (

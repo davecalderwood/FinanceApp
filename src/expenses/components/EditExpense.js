@@ -84,7 +84,9 @@ const EditExpense = (props) => {
             Date: formattedDate,
             Category: selectedOption,
             Comments: formState.inputs.comments
-        })
+        }).then(() => {
+            props.onClose()
+        });
     }
 
     if (isLoading) {

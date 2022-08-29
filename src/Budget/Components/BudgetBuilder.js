@@ -15,27 +15,22 @@ import BudgetIncomeList from './BudgetIncomeList';
 const BudgetBuilder = (props) => {
     const [showModal, setShowModal] = useState(false);
     const [showIncomeModal, setShowIncomeModal] = useState(false);
-    const [budgetData, setBudgetData] = useState();
-    const [incomeData, setIncomeData] = useState();
-    const [formState, inputHandler] = useForm({
-        expectedTakeHome: {
-            value: '',
-            isValid: false
-        },
-        expectedExpense: {
-            value: "",
-            isValid: false
-        },
-    }, false);
+
+    const [budgetData, setBudgetData] = useState([]);
+    const [incomeData, setIncomeData] = useState([]);
 
     useEffect(() => {
-        db.collection(LIST_TITLES.budgetExpenses).get().then(expenses => {
-            setBudgetData(expenses);
-        });
-        db.collection(LIST_TITLES.budgetIncome).get().then(income => {
-            setIncomeData(income);
-        });
-    }, []);
+        const getData = async () => {
+            await db.collection(LIST_TITLES.budgetExpenses).get().then(expenses => {
+                setBudgetData(expenses);
+            });
+            await db.collection(LIST_TITLES.budgetIncome).get().then(income => {
+                setIncomeData(income);
+            });
+        }
+        getData();
+    }, [setBudgetData, setIncomeData]);
+
 
     const showModalHanlder = () => {
         setShowModal(true);
@@ -57,7 +52,11 @@ const BudgetBuilder = (props) => {
     return (
         <div className={classes.budgetBuilder}>
             <div className={classes.budgetBox}>
-                <Button onClick={showModalHanlder}>Add Budget Expense</Button>
+                <div className={classes.budgetHeader}>
+                    <Button onClick={showModalHanlder}>Add Budget Expense</Button>
+                    <span>Total: </span>
+                </div>
+
                 {showModal && <ExpenseForBudgetBuilder onClose={hideModalHanlder} />}
 
                 <ul className={classes.expenseList}>
@@ -66,7 +65,11 @@ const BudgetBuilder = (props) => {
             </div>
 
             <div className={classes.budgetBox}>
-                <Button onClick={showIncomeModalHanlder}>Add Monthly Income</Button>
+                <div className={classes.budgetHeader}>
+                    <Button onClick={showIncomeModalHanlder}>Add Monthly Income</Button>
+                    <span>Total: </span>
+                </div>
+
                 {showIncomeModal && <IncomeForBudgetBuilder onClose={hideIncomeModalHanlder} />}
 
                 <ul className={classes.expenseList}>
@@ -74,6 +77,8 @@ const BudgetBuilder = (props) => {
                 </ul>
 
             </div>
+
+
         </div>
     );
 }

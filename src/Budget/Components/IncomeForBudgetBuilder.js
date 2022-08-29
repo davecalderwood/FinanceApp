@@ -27,7 +27,6 @@ const IncomeForBudgetBuilder = (props) => {
         // db.collection(LIST_TITLES.budgetIncome).delete();
 
         db.collection(LIST_TITLES.budgetIncome).get().then(items => {
-            console.log(items);
             // Short hand for checking if item exists in localbase budgetIncome
             // Using inputs.Title instead of id since id is currently just a random number; normally I would check by id
             const itemExists = items.some(i => i.Title.toLowerCase() === formState.inputs.Title.value.toLowerCase());
@@ -40,7 +39,10 @@ const IncomeForBudgetBuilder = (props) => {
                     Title: formState.inputs.Title.value,
                     Amount: formState.inputs.Amount.value,
                     Category: "budgetIncome",
+                }).then(() => {
+                    props.onClose()
                 });
+
             }
         })
     }
